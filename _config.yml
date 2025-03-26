@@ -1,3 +1,62 @@
+title: "Rolando Villca Choque"
+email: "your.email@example.com"
+description: >- 
+  Data Science Portfolio - Projects, Insights & Exploratory Analysis
+baseurl: "" # leave blank for user/organisation site
+url: "https://yourusername.github.io" # replace with your GitHub username
+repository: "yourusername/yourrepository" # for GitHub metadata & edit links
+
+# Theme settings
 remote_theme: "mmistakes/minimal-mistakes"
+
+# Enable Google Analytics (optional)
+# google_analytics: UA-XXXXXX-X
+
+# Author profile (shown on homepage if enabled)
+author:
+  name: "Rolando Villca Choque"
+  avatar: "/assets/profile.jpg"
+  bio: "Data Science enthusiast | Python, SQL, Power BI | Turning data into decisions"
+  location: "UK / Bolivia"
+  links:
+    - label: "GitHub"
+      icon: "fab fa-github"
+      url: "https://github.com/yourusername"
+    - label: "LinkedIn"
+      icon: "fab fa-linkedin"
+      url: "https://linkedin.com/in/yourprofile"
+    - label: "Email"
+      icon: "fas fa-envelope"
+      url: "mailto:your.email@example.com"
+
+# Site navigation
+nav:
+  - title: "Home"
+    url: /
+  - title: "Projects"
+    url: /projects/
+  - title: "About Me"
+    url: /about/
+  - title: "Contact"
+    url: /contact/
+
+# Collections (for portfolio/blog-like project posts)
+collections:
+  projects:
+    output: true
+    permalink: /projects/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      share: true
+      comments: false
+
+# Plugins
 plugins:
-  - jekyll-include-cache
+  - jekyll-feed
