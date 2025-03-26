@@ -60,3 +60,17 @@ defaults:
 # Plugins
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-include-cache
+  - jekyll-archives
+
+# Pagination
+paginate: 5
+paginate_path: /page:num/
+
+# Markdown processing
+markdown: kramdown
+kramdown:
+  input: GFM
