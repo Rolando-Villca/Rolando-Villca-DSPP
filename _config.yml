@@ -1,14 +1,11 @@
-# Site settings
 title: "Rolando Villca Choque"
 description: "Data Science Portfolio – Projects, Insights, and Visualisations"
-url: "https://yourusername.github.io"  https://rolando-villca.github.io
-baseurl: ""  # leave empty for user/organization site
-repository: "https://rolando-villca.github.io/Rolando-Villca-DSPP/"  # e.g. rolandovillca/portfolio
+url: "https://yourusername.github.io"  # Replace with your GitHub username
+baseurl: ""  # Leave this empty for personal site
+repository: "yourusername/yourrepository"  # Replace accordingly
 
-# Theme
 remote_theme: "mmistakes/minimal-mistakes"
 
-# Author details (optional)
 author:
   name: "Rolando Villca Choque"
   avatar: "/assets/profile.jpg"
@@ -25,7 +22,7 @@ author:
       icon: "fas fa-envelope"
       url: "mailto:your.email@example.com"
 
-# Navigation (top bar)
+# Navigation menu
 nav:
   - title: "Home"
     url: /
@@ -36,14 +33,14 @@ nav:
   - title: "Contact"
     url: /contact/
 
-# Plugins supported by GitHub Pages
+# Jekyll plugins supported by GitHub Pages
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-paginate
   - jekyll-sitemap
 
-# Collections (for project pages)
+# Collections for projects
 collections:
   projects:
     output: true
@@ -56,15 +53,15 @@ defaults:
     values:
       layout: single
       author_profile: true
-      share: true
       read_time: true
+      share: true
       comments: false
 
-# Pagination (optional)
+# Pagination settings
 paginate: 5
-paginate_path: /page:num/
+paginate_path: "/page:num/"
 
-# Markdown processing
+# Markdown processor
 markdown: kramdown
 kramdown:
   input: GFM
