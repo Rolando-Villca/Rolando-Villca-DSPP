@@ -1,22 +1,18 @@
+# Site settings
 title: "Rolando Villca Choque"
-email: "your.email@example.com"
-description: >- 
-  Data Science Portfolio - Projects, Insights & Exploratory Analysis
-baseurl: "" # leave blank for user/organisation site
-url: "https://yourusername.github.io" # replace with your GitHub username
-repository: "yourusername/yourrepository" # for GitHub metadata & edit links
+description: "Data Science Portfolio – Projects, Insights, and Visualisations"
+url: "https://yourusername.github.io"  https://rolando-villca.github.io
+baseurl: ""  # leave empty for user/organization site
+repository: "https://rolando-villca.github.io/Rolando-Villca-DSPP/"  # e.g. rolandovillca/portfolio
 
-# Theme settings
+# Theme
 remote_theme: "mmistakes/minimal-mistakes"
 
-# Enable Google Analytics (optional)
-# google_analytics: UA-XXXXXX-X
-
-# Author profile (shown on homepage if enabled)
+# Author details (optional)
 author:
   name: "Rolando Villca Choque"
   avatar: "/assets/profile.jpg"
-  bio: "Data Science enthusiast | Python, SQL, Power BI | Turning data into decisions"
+  bio: "Data Science enthusiast turning data into decisions."
   location: "UK / Bolivia"
   links:
     - label: "GitHub"
@@ -29,18 +25,25 @@ author:
       icon: "fas fa-envelope"
       url: "mailto:your.email@example.com"
 
-# Site navigation
+# Navigation (top bar)
 nav:
   - title: "Home"
     url: /
   - title: "Projects"
     url: /projects/
-  - title: "About Me"
+  - title: "About"
     url: /about/
   - title: "Contact"
     url: /contact/
 
-# Collections (for portfolio/blog-like project posts)
+# Plugins supported by GitHub Pages
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-paginate
+  - jekyll-sitemap
+
+# Collections (for project pages)
 collections:
   projects:
     output: true
@@ -53,20 +56,11 @@ defaults:
     values:
       layout: single
       author_profile: true
-      read_time: true
       share: true
+      read_time: true
       comments: false
 
-# Plugins
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
-  - jekyll-paginate
-  - jekyll-sitemap
-  - jekyll-include-cache
-  - jekyll-archives
-
-# Pagination
+# Pagination (optional)
 paginate: 5
 paginate_path: /page:num/
 
