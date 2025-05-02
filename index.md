@@ -13,7 +13,11 @@ Welcome to my data science project portfolio. Here, I analyze Amazon sales and c
 4. [Usage](#usage)  
 
 ## Key Insights
-- *(Add your bullet points here)*
+## Key Insights
+
+- **Insight 1**: e.g. “Seasonal demand peaks in Q4 drive a 40% revenue bump.”
+- **Insight 2**: e.g. “Positive reviews (4★+) correlate with a 20% lift in repeat purchases.”
+- **Insight 3**: e.g. “Price reductions of >10% generate 15% more daily sales.”
 
 ## Data Description
 *(Briefly describe the datasets you used)*
