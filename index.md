@@ -25,6 +25,11 @@ Welcome to my data science project portfolio. Here, I analyze Amazon sales and c
 ## Methodology
 *(Outline your analysis steps: cleaning, EDA, modeling, etc.)*
 
+## Final Report
+
+[📄 Download the full project report (DOCX)](./final_report.docx)
+
+
 ## Usage
 ```bash
 git clone https://github.com/Rolando-Villca/Rolando-Villca-DSPP.git
