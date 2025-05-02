@@ -1,1 +1,5 @@
 theme: jekyll-theme-cayman
+
+# Tell Jekyll to copy this file into the site build:
+include:
+  - final_report.docx
