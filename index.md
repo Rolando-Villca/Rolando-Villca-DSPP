@@ -3,7 +3,7 @@ layout: default
 ---
 
 # Amazon Sales & Reviews Analysis  
-[![Download Report](https://img.shields.io/badge/Report-DOCX-blue)](./final_report.docx) [![Notebook](https://img.shields.io/badge/Notebook-Jupyter-orange)](./analysis_notebook.ipynb)
+[![Download Report](https://img.shields.io/badge/Report-DOCX-blue)](https://github.com/Rolando-Villca/Rolando-Villca-DSPP/raw/main/final_report.docx) [![Notebook](https://img.shields.io/badge/Notebook-Jupyter-orange)](./analysis_notebook.ipynb)
 
 > Turning Amazon data into strategic e-commerce insights.
 
@@ -56,6 +56,6 @@ We analyzed **2.2 million Amazon UK product records** in Python notebooks. After
 
 3. **Feature Engineering**  
    ```python
-   df['reviews_per_star'] = df['reviews'] / (df['stars'] + 1)
-   df['price_per_star']   = df['price']   / (df['stars'] + 1)
-   df['review_intensity'] = df['reviews'] / (df['price'] + 1)
+   df['reviews_per_star']   = df['reviews'] / (df['stars'] + 1)
+   df['price_per_star']     = df['price']   / (df['stars'] + 1)
+   df['review_intensity']   = df['reviews'] / (df['price'] + 1)
