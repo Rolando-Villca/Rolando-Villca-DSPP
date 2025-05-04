@@ -11,7 +11,6 @@ title: "Amazon Sales & Reviews Analysis"
     <p><strong>Tools:</strong> Python · pandas · scikit-learn · Jupyter</p>
     <p><strong>Model:</strong> Random Forest on log-transformed target</p>
     <p><strong>Performance:</strong> MAE 169.4 · R² 0.242</p>
-    <a class="button primary" href="#executive-summary">Jump to Executive Summary</a>
   </div>
 </div>
 
@@ -29,18 +28,6 @@ In this project, we analysed **2.22 million** Amazon UK product listings to pred
 ---
 
 ## 📋 Table of Contents
-
-1. [Executive Summary](#executive-summary)  
-2. [Data Description](#data-description)  
-3. [Exploratory Data Analysis](#exploratory-data-analysis)  
-4. [Feature Engineering](#feature-engineering)  
-5. [Modelling & Evaluation](#modelling--evaluation)  
-6. [Feature Importance](#feature-importance)  
-7. [Discussion & Next Steps](#discussion--next-steps)  
-8. [Conclusion](#conclusion)  
-9. [Reflection](#reflection)  
-
----
 
 ## Data Description  
 <a name="data-description"></a>
