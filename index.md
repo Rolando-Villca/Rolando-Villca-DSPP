@@ -15,8 +15,6 @@ Key highlights:
 - **Best model** (RF + log target) achieved **MAE 169.4** and **R² 0.242**, cutting error by ~17 %.  
 - **Review-based metrics** (engagement per £, total reviews) proved more predictive than price alone.
 
-[Jump to Data Description](#data-description)
-
 ---
 
 # Amazon Sales & Reviews Analysis
@@ -29,19 +27,6 @@ Key highlights:
     <p><strong>Performance:</strong> MAE 169.4 · R² 0.242</p>
     <a class="button primary" href="#data-description">Jump to Data Description</a>
   </div>
----
-
-## 📋 Table of Contents
-1. [Executive Summary](#executive-summary)  
-2. [Data Description](#data-description)  
-3. [Exploratory Data Analysis](#exploratory-data-analysis)  
-4. [Feature Engineering](#feature-engineering)  
-5. [Modelling & Evaluation](#modelling--evaluation)  
-6. [Feature Importance](#feature-importance)  
-7. [Discussion & Next Steps](#discussion--next-steps)  
-8. [Conclusion](#conclusion)  
-9. [Reflection](#reflection)  
-
 ---
 
 ## Data Description  
