@@ -1,4 +1,8 @@
 ---
+layout: default
+title: "Amazon Sales & Reviews Analysis"
+permalink: /Rolando-Villca-DSPP/
+---
 title: “Rolando Villca – Data Science Portfolio”
 ---
 
