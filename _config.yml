@@ -1,38 +1,24 @@
-# Site settings
-title: "Rolando Villca – Data Science Portfolio"
-description: "Portfolio showcasing data science projects by Rolando Villca"
-url: "https://rolando-villca.github.io" # your live site URL
-baseurl: ""                            # leave blank for user site
+# ──────────────────────────────────────────────────────────────────────────
+# Basic site config for Jekyll (Project Page)
+# ──────────────────────────────────────────────────────────────────────────
 
-# Build settings
-theme: minima                         # or another supported GitHub Pages theme
+title: "Amazon Sales & Reviews Analysis"
+description: "Predicting monthly sales volume from Amazon UK product metadata"
+# No baseurl needed—this is a project page under your user site
 markdown: kramdown
-kramdown:
-  input: GFM                          # GitHub‐flavored markdown
+theme: minima
 
-# Plugins
+# Enable common plugins (SEO tags, feed, emoji support)
 plugins:
   - jekyll-seo-tag
   - jekyll-feed
   - jekyll-emoji
 
-# Emoji settings (jemoji)
-emoji:
-  src: "https://github.githubassets.com/images/icons/emoji/"
-  ext: ".png"
+# kramdown (GitHub-flavored Markdown)
+kramdown:
+  input: GFM
 
-# Exclude from processing
+# Exclude vendor files (optional)
 exclude:
-  - Gemfile
-  - Gemfile.lock
   - node_modules
   - vendor
-
-# Defaults for posts/pages (optional)
-defaults:
-  - scope:
-      path: ""                        # empty string means all files
-      type: "pages"
-    values:
-      layout: "default"
-      author: "Rolando Villca"
