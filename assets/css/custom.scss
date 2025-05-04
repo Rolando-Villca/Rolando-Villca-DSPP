@@ -1,19 +1,6 @@
 ---
 ---
 
-@import "jekyll-theme-midnight"; /* or whichever theme you chose */
+@import "jekyll-theme-midnight";
 
-.page-layout {
-  display: flex;
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.main-content { flex: 3; }
-.sidebar      { flex: 1; background: rgba(255,255,255,0.05); padding:1rem; border-radius:8px; }
-
-.sidebar img { width:100%; margin-bottom:1rem; border-radius:4px; }
-
-@media (max-width:800px) {
-  .page-layout { flex-direction: column; }
-}
+/* No custom layout overrides—using default theme styles */
