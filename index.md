@@ -67,8 +67,70 @@ _Bullet: Log–log reveals weak inverse relationship; hot-spots at £10–20 & 1
 ## Feature Engineering  
 <a name="feature-engineering"></a>
 
-```python
+
+python
 df_clean['review_intensity'] = df_clean['reviews'] / (df_clean['price'] + 1)
 df_clean['reviews_per_star']   = df_clean['reviews'] / (df_clean['stars'] + 1)
 # price_per_star dropped later for collinearity
 
+
+---
+
+## Modelling & Evaluation  
+<a name="modelling--evaluation"></a>
+
+| Model               | MAE    | R²     | CV-RMSE ± SD |
+|---------------------|--------|--------|--------------|
+| Linear Regression   | 204.12 | 0.2177 | 567 ± 4      |
+| Random Forest       | 202.73 | 0.2071 | 574 ± 6      |
+| **RF + log target** | **169.42** | **0.2424** | **559 ± 5** |
+
+- Note: `log1p` transform stabilized variance, reducing MAE by 17 %.
+
+---
+
+## Feature Importance  
+<a name="feature-importance"></a>
+
+| Rank | Feature            | Importance |
+|------|--------------------|------------|
+| 1    | `review_intensity` | 0.32       |
+| 2    | `reviews`          | 0.26       |
+| 3    | `price`            | 0.18       |
+| 4    | `stars`            | 0.08       |
+| 5    | `isBestSeller`     | 0.05       |
+| 6    | Category dummies   | 0.11       |
+
+![Feature Importance](/assets/feature-importance.png)
+
+*Mention validating with permutation importance or SHAP in future work.*
+
+---
+
+## Discussion & Next Steps  
+<a name="discussion--next-steps"></a>
+
+Despite improvements, models explain ~24 % variance—seasonality, marketing, brand effects missing.  
+**Next:** hyperparameter tuning, test XGBoost/CatBoost, add temporal features, sentiment analysis, segment-specific models.
+
+---
+
+## Conclusion  
+<a name="conclusion"></a>
+
+Review-centric metrics (especially `review_intensity`) are the strongest sales predictors. RF + log delivered the best trade-off. Merchants should prioritize review engagement, and future models should include seasonality and marketing data.
+
+---
+
+## Reflection  
+<a name="reflection"></a>
+
+> **📝 Reflection**  
+> - Feature engineering delivered ~10 % MAE improvement.  
+> - Log-scaling fixed heteroscedasticity.  
+> - RF + log target outperformed baselines.  
+> - Upcoming: integrate seasonality, sentiment, and advanced tuning.
+
+---
+
+*All visuals and full code are available in the [analysis notebook](analysis_notebook.ipynb).*  
