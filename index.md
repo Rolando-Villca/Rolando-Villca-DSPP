@@ -136,5 +136,12 @@ Review-centric features—especially `review_intensity`—are the dominant signa
 
 ---
 
+## 📄 Full Project Report  
+<a name="full-report"></a>
+
+[![Download Report](https://img.shields.io/badge/Report-DOCX-blue)]({{ site.baseurl }}/assets/final_report.docx)  
+*Click to download the complete write-up of this analysis.*
+
+
 *Full code and visuals are available in the [analysis notebook](analysis_notebook.ipynb).*
 
