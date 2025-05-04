@@ -13,6 +13,16 @@ _Python · pandas · scikit-learn · Jupyter · GitHub Pages_
 ---
 
 ## 🚀 Amazon Sales & Reviews Analysis
+<div class="project-card">
+  <img src="/assets/amazon-hexbin.png" alt="Hexbin: Price vs Sales" />
+  <div class="project-summary">
+    <p><strong>Dataset:</strong> 2.22 M UK listings</p>
+    <p><strong>Tools:</strong> Python · pandas · scikit-learn · Jupyter</p>
+    <p><strong>Model:</strong> Random Forest on log-scaled target</p>
+    <p><strong>Performance:</strong> MAE 169 · R² 0.24</p>
+    <a class="button primary" href="#data-description">Jump to Data Description</a>
+  </div>
+</div>
 
 **Predicting monthly units sold on Amazon UK from product metadata**  
 2.22 million listings · Random Forest on log-scaled target · MAE 169 · R² 0.24
