@@ -1,7 +1,10 @@
 # ── _config.yml ───────────────────────────────────────────────────────────
 
+---
+layout: default
 title: "Amazon Sales & Reviews Analysis"
-description: "Dark-mode GitHub Pages layout with midnight theme"
+permalink: /
+---
 
 baseurl: "/Rolando-Villca-DSPP"
 theme: jekyll-theme-midnight  # ← change to the dark midnight theme
