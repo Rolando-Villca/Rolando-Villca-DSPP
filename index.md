@@ -15,9 +15,6 @@ title: "Amazon Sales & Reviews Analysis"
     <a class="button primary" href="#data-description">Jump to Data Description</a>
   </div>
 </div>
-
-_Predicting monthly units sold on Amazon UK from product metadata_
-
 ---
 
 ## 📋 Table of Contents
