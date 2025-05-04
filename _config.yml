@@ -1,13 +1,14 @@
-# ── _config.yml ───────────────────────────────────────────────────────────
+# ── _config.yml ──────────────────────────────────────────
 
----
-layout: default
 title: "Amazon Sales & Reviews Analysis"
-permalink: /
----
+description: "E-commerce insights from 2.22 M Amazon UK listings"
+baseurl: "/Rolando-Villca-DSPP"  # adjust if needed
+url: "https://rolando-villca.github.io"
 
-baseurl: "/Rolando-Villca-DSPP"
-theme: jekyll-theme-midnight  # ← change to the dark midnight theme
+# Choose a light theme:
+theme: jekyll-theme-cayman
+# OR
+# theme: minima
 
 markdown: kramdown
 kramdown:
