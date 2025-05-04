@@ -7,7 +7,7 @@ title: "Amazon Sales & Reviews Analysis"
 # Amazon Sales & Reviews Analysis
 
 <div class="project-card">
-  <img src="/assets/amazon-hexbin.png" alt="Hexbin: Price vs Sales" />
+  <img src="assets/amazon-hexbin.png" alt="Hexbin: Price vs Sales" />
     <p><strong>Dataset:</strong> 2.22 million UK listings</p>
     <p><strong>Tools:</strong> Python · pandas · scikit-learn · Jupyter</p>
     <p><strong>Model:</strong> Random Forest on log-scaled target</p>
