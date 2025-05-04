@@ -1,6 +1,32 @@
 ---
-# Jekyll front-matter so this SCSS is processed
+# Tell Jekyll to compile this as SCSS
 ---
 
-@import "minima";
-/* your custom styles here */
+@import "minima";  // pull in the base theme
+
+/* ── Project Card Styling ───────────────────────────────────────────────── */
+
+.project-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.project-card img {
+  border-radius: 8px;
+  max-width: 160px;
+}
+
+.project-summary p {
+  margin: 0.2em 0;
+}
+
+.button.primary {
+  background: #0366d6;
+  color: #fff;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+}
