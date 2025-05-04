@@ -1,9 +1,8 @@
 ---
 ---
 
-@import "jekyll-theme-slate";
+@import "jekyll-theme-midnight";  /* pull in the dark midnight base */
 
-/* Project card styling */
-.project-card { display: flex; gap:1rem; margin-bottom:2rem; }
-.project-card img { border-radius:8px; max-width:160px; }
-.button.primary { background:#0366d6; color:#fff; padding:.5em 1em; border-radius:4px; }
+ /* your existing overrides… */
+ .project-card { /* … */ }
+ .button.primary { /* … */ }
