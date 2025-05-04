@@ -1,5 +1,5 @@
 title: "Amazon Sales & Reviews Analysis"
-description: "Predicting monthly units sold on Amazon UK from product metadata"
+description: "How can Amazon sales and review data be analysed to extract meaningful business insights?"
 
 theme: jekyll-theme-slate
 markdown: kramdown
