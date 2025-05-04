@@ -1,7 +1,7 @@
 # ── _config.yml ──────────────────────────────────────────
 
-title: "Amazon Sales & Reviews Analysis"
-description: "E-commerce insights from 2.22 M Amazon UK listings"
+title: "Data Science Portfolio"
+description: "Proffesional Data Practice"
 baseurl: "/Rolando-Villca-DSPP"  # adjust if needed
 url: "https://rolando-villca.github.io"
 
