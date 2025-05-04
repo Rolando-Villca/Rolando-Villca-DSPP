@@ -1,7 +1,11 @@
-title: "Data Science Apprenticeship"
-description: "Data Science Portfolio - Professional Practice"
+# ── _config.yml ───────────────────────────────────────────────────────────
 
-theme: jekyll-theme-slate
+title: "Amazon Sales & Reviews Analysis"
+description: "Dark-mode GitHub Pages layout with midnight theme"
+
+baseurl: "/Rolando-Villca-DSPP"
+theme: jekyll-theme-midnight  # ← change to the dark midnight theme
+
 markdown: kramdown
 kramdown:
   input: GFM
@@ -11,4 +15,6 @@ plugins:
   - jekyll-feed
   - jekyll-emoji
 
-baseurl: "/Rolando-Villca-DSPP"
+exclude:
+  - node_modules
+  - vendor
