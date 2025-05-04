@@ -2,7 +2,8 @@
 layout: default
 title: "Amazon Sales & Reviews Analysis"
 ---
-
+<div class="page-layout">
+  <div class="main-content">
 # Amazon Sales & Reviews Analysis
 
 <div class="project-card">
@@ -146,13 +147,12 @@ Review-centric features—especially `review_intensity`—drive monthly sales. R
 
   </div> <!-- /.main-content -->
 
-  <aside class="sidebar">
-    ## 📊 More Visualisations
-
-    ![Price Dist.]({{ site.baseurl }}/assets/price-histogram.png)
-    ![Sales Dist.]({{ site.baseurl }}/assets/sales-histogram.png)
-    ![Hexbin]({{ site.baseurl }}/assets/amazon-hexbin.png)
-    ![Corr Heatmap]({{ site.baseurl }}/assets/corr-heatmap.png)
+<aside class="sidebar">
+    <h3>📊 More Visualisations</h3>
+    <img src="{{ site.baseurl }}/assets/price-histogram.png" alt="Price histogram"/>
+    <img src="{{ site.baseurl }}/assets/sales-histogram.png" alt="Sales histogram"/>
+    <img src="{{ site.baseurl }}/assets/amazon-hexbin.png" alt="Hexbin plot"/>
+    <img src="{{ site.baseurl }}/assets/corr-heatmap.png" alt="Correlation heatmap"/>
   </aside>
-</div> <!-- /.page-layout -->
 
+</div>
