@@ -3,84 +3,102 @@ layout: default
 title: "Amazon Sales & Reviews Analysis"
 ---
 
-## 🚀 Executive Summary
-<a name="executive-summary"></a>
-
-In this project we analysed **2.22 million** Amazon UK listings to predict monthly sales volume (`boughtInLastMonth`) from product metadata.  
-Key highlights:
-
-- **Skewed distributions** in price and sales required log-scaling and careful filtering.  
-- **Feature engineering** (e.g. `review_intensity`) boosted signal beyond raw counts.  
-- Compared **three models**: Linear Regression, Random Forest, and Random Forest with `log1p` target.  
-- **Best model** (RF + log target) achieved **MAE 169.4** and **R² 0.242**, cutting error by ~17 %.  
-- **Review-based metrics** (engagement per £, total reviews) proved more predictive than price alone.
-
----
-
 # Amazon Sales & Reviews Analysis
 
 <div class="project-card">
+  <img src="{{ site.baseurl }}/assets/amazon-hexbin.png" alt="Hexbin: Price vs Sales" />
+  <div class="project-summary">
     <p><strong>Dataset:</strong> 2.22 million UK listings</p>
     <p><strong>Tools:</strong> Python · pandas · scikit-learn · Jupyter</p>
-    <p><strong>Model:</strong> Random Forest on log-scaled target</p>
+    <p><strong>Model:</strong> Random Forest on log-transformed target</p>
     <p><strong>Performance:</strong> MAE 169.4 · R² 0.242</p>
-    <a class="button primary" href="#data-description">Jump to Data Description</a>
+    <a class="button primary" href="#executive-summary">Jump to Executive Summary</a>
   </div>
+</div>
+
+## 🚀 Executive Summary
+<a name="executive-summary"></a>
+
+In this project, we analysed **2.22 million** Amazon UK product listings to predict **monthly sales volume** using structured metadata.  
+**Key highlights:**  
+- Skewed price and sales distributions required log-scaling and focused filtering  
+- Domain-driven feature engineering (e.g. `review_intensity`) enhanced predictive signal  
+- Compared three models: Linear Regression, Random Forest, and Random Forest on a `log1p` target  
+- The best model (RF + log target) achieved **MAE 169.4** and **R² 0.242**, reducing error by ~17 %  
+- Review-based metrics outperformed price and ratings alone, guiding strategic engagement
+
+---
+
+## 📋 Table of Contents
+
+1. [Executive Summary](#executive-summary)  
+2. [Data Description](#data-description)  
+3. [Exploratory Data Analysis](#exploratory-data-analysis)  
+4. [Feature Engineering](#feature-engineering)  
+5. [Modelling & Evaluation](#modelling--evaluation)  
+6. [Feature Importance](#feature-importance)  
+7. [Discussion & Next Steps](#discussion--next-steps)  
+8. [Conclusion](#conclusion)  
+9. [Reflection](#reflection)  
+
 ---
 
 ## Data Description  
 <a name="data-description"></a>
 
-*Explain the raw dataset (2.22 M rows, 10 columns), no missing values, extreme skew.*  
-*Detail filtering: dropped 18 price errors, ~2.06 M zero-sales, leaving 161 315 active listings.*
+*Explain the raw dataset (2.22 million rows, 10 columns), no missing values, extreme skew.*  
+*Filtering: dropped 18 price errors, ~2.06 million zero-sales, leaving 161 315 active listings.*
 
-| Column            | Description                  |
-| ----------------- | ---------------------------- |
-| `stars`           | Avg. rating (0–5), 61 % blank |
-| `reviews`         | Total review count           |
-| `price`           | £0.20–£100 000               |
-| `boughtInLastMonth` | Units sold last 30 days    |
-| `isBestSeller`    | Bestseller badge flag        |
-| `categoryName`    | Product category             |
+| Column                | Description                        |
+|-----------------------|------------------------------------|
+| `stars`               | Avg. rating (0–5); 61 % unrated    |
+| `reviews`             | Total review count                 |
+| `price`               | £0.20–£100 000                     |
+| `boughtInLastMonth`   | Units sold in last 30 days         |
+| `isBestSeller`        | Bestseller badge flag (0 or 1)     |
+| `categoryName`        | Product category                   |
 
 ---
 
 ## Exploratory Data Analysis  
 <a name="exploratory-data-analysis"></a>
 
-![Price Distribution](/assets/price-histogram.png)  
-_Bullet: Most prices £5–£50, peaks at £9.99 & £19.99._
+![Price Distribution]({{ site.baseurl }}/assets/price-histogram.png)
 
-![Sales Distribution](/assets/sales-histogram.png)  
-_Bullet: Top decile drives 75 % of volume._
+- Most product prices fall between £5–£50, with peaks at £9.99 and £19.99.
 
-![Price vs Sales (hexbin)](/assets/amazon-hexbin.png)  
-_Bullet: Log–log reveals weak inverse relationship; hot-spots at £10–20 & 100–500 units._
+![Sales Distribution]({{ site.baseurl }}/assets/sales-histogram.png)
+
+- The top decile of products drives 75 % of total sales volume.
+
+![Price vs Sales (hexbin)]({{ site.baseurl }}/assets/amazon-hexbin.png)
+
+- Log–log scaling reveals a weak inverse relationship, with hotspots at £10–20 and 100–500 units.
 
 ---
 
 ## Feature Engineering  
 <a name="feature-engineering"></a>
 
-
 python
 df_clean['review_intensity'] = df_clean['reviews'] / (df_clean['price'] + 1)
-df_clean['reviews_per_star']   = df_clean['reviews'] / (df_clean['stars'] + 1)
-# price_per_star dropped later for collinearity
-
+df_clean['reviews_per_star']  = df_clean['reviews'] / (df_clean['stars'] + 1)
+# 'price_per_star' dropped later to avoid collinearity
 
 ---
+
+### Part 2 (Modelling → Reflection)
 
 ## Modelling & Evaluation  
 <a name="modelling--evaluation"></a>
 
-| Model               | MAE    | R²     | CV-RMSE ± SD |
-|---------------------|--------|--------|--------------|
-| Linear Regression   | 204.12 | 0.2177 | 567 ± 4      |
-| Random Forest       | 202.73 | 0.2071 | 574 ± 6      |
+| Model               | MAE      | R²       | CV-RMSE ± SD |
+|---------------------|----------|----------|--------------|
+| Linear Regression   | 204.12   | 0.2177   | 567 ± 4      |
+| Random Forest       | 202.73   | 0.2071   | 574 ± 6      |
 | **RF + log target** | **169.42** | **0.2424** | **559 ± 5** |
 
-- Note: `log1p` transform stabilized variance, reducing MAE by 17 %.
+- Applying `log1p` stabilized variance, reducing MAE by ~17 %.
 
 ---
 
@@ -96,24 +114,29 @@ df_clean['reviews_per_star']   = df_clean['reviews'] / (df_clean['stars'] + 1)
 | 5    | `isBestSeller`     | 0.05       |
 | 6    | Category dummies   | 0.11       |
 
-![Feature Importance](/assets/feature-importance.png)
+![Feature Importance]({{ site.baseurl }}/assets/feature-importance.png)
 
-*Mention validating with permutation importance or SHAP in future work.*
+- Future work: validate importances with permutation importance or SHAP.
 
 ---
 
 ## Discussion & Next Steps  
 <a name="discussion--next-steps"></a>
 
-Despite improvements, models explain ~24 % variance—seasonality, marketing, brand effects missing.  
-**Next:** hyperparameter tuning, test XGBoost/CatBoost, add temporal features, sentiment analysis, segment-specific models.
+Our best model explains ~24 % of variance; missing factors such as seasonality, marketing spend, and brand loyalty remain unobserved.  
+**Next steps:**  
+1. Hyperparameter optimization (e.g., RandomizedSearch)  
+2. Explore gradient boosting (XGBoost, LightGBM, CatBoost)  
+3. Incorporate temporal features to capture seasonality  
+4. Apply sentiment analysis to review text  
+5. Build category-specific models via clustering
 
 ---
 
 ## Conclusion  
 <a name="conclusion"></a>
 
-Review-centric metrics (especially `review_intensity`) are the strongest sales predictors. RF + log delivered the best trade-off. Merchants should prioritize review engagement, and future models should include seasonality and marketing data.
+Review-centric metrics—particularly `review_intensity`—are the strongest signals for monthly sales volume on Amazon UK. A Random Forest on a log-transformed target produced the best performance (MAE 169.4, R² 0.242), underscoring the importance of handling skewed data. Sellers should prioritize review acquisition and engagement, and future work will benefit from integrating temporal and contextual marketing data.
 
 ---
 
@@ -121,11 +144,12 @@ Review-centric metrics (especially `review_intensity`) are the strongest sales p
 <a name="reflection"></a>
 
 > **📝 Reflection**  
-> - Feature engineering delivered ~10 % MAE improvement.  
-> - Log-scaling fixed heteroscedasticity.  
-> - RF + log target outperformed baselines.  
-> - Upcoming: integrate seasonality, sentiment, and advanced tuning.
+> - Feature engineering cut MAE by ~10 %.  
+> - Log-scaling resolved heteroscedastic errors.  
+> - RF + log target outperformed the baselines.  
+> - Next: integrate seasonality, sentiment analysis, and advanced hyperparameter tuning.
 
 ---
 
-*All visuals and full code are available in the [analysis notebook](analysis_notebook.ipynb).*  
+*Full code and visuals are available in the [analysis notebook](analysis_notebook.ipynb).*
+
