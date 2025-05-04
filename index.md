@@ -1,61 +1,52 @@
 ---
-layout: default
+title: “Rolando Villca – Data Science Portfolio”
 ---
 
-# Amazon Sales & Reviews Analysis  
-[![Download Report](https://img.shields.io/badge/Report-DOCX-blue)](https://github.com/Rolando-Villca/Rolando-Villca-DSPP/raw/main/final_report.docx) [![Notebook](https://img.shields.io/badge/Notebook-Jupyter-orange)](./analysis_notebook.ipynb)
-
-> Turning Amazon data into strategic e-commerce insights.
-
----
-
-## 📋 Table of Contents
-
-1. [🔍 Research Question](#research-question)  
-2. [🚀 Executive Summary](#executive-summary)  
-3. [🛠️ Methodology](#methodology)  
-4. [📈 Key Findings](#key-findings)  
-5. [📂 Data Description](#data-description)  
-6. [🎯 Conclusion](#conclusion)  
-7. [📚 References](#references)  
-8. [📝 Final Report](#final-report)  
+# Rolando Villca  
+**Data Science Apprentice**  
+_Python · pandas · scikit-learn · Jupyter · GitHub Pages_
 
 ---
 
-## 🔍 Research Question
+## 🚀 Amazon Sales & Reviews Analysis
 
-**How can Amazon sales and review data be analyzed to extract meaningful business insights?**  
-We explore whether structured product metadata—review counts, star ratings, price, category, bestseller status—can predict sales performance and guide e-commerce strategy.
+**Predicting monthly units sold on Amazon UK from product metadata**  
+2.22 million listings · Random Forest on log-scaled target · MAE 169 · R² 0.24
+
+<div style="display: flex; gap: 1rem; align-items: flex-start; margin: 1rem 0;">
+  <!-- 1. Thumbnail you export from your notebook -->
+  <img src="/assets/amazon-hexbin.png" alt="Hexbin: Price vs Sales" width="140" style="border-radius:8px;"/>
+  <div>
+    **Key Steps**  
+    1. **Clean & Engineer**: dropped zero-sales, built `review_intensity`.  
+    2. **EDA**: distribution & hexbin plots, correlation heatmap.  
+    3. **Model**: Linear vs Random Forest vs RF+log target.  
+
+    **Top Metrics**  
+    - **MAE**: 169.4  
+    - **R²**: 0.242  
+
+    <a href="https://rolando-villca.github.io/Rolando-Villca-DSPP/" 
+       style="display:inline-block;margin-top:0.5rem;padding:0.4rem 0.8rem;
+              background:#0366d6;color:white;border-radius:4px;text-decoration:none;">
+      🔎 View Full Analysis
+    </a>  
+    <a href="https://github.com/Rolando-Villca/Rolando-Villca-DSPP" 
+       style="margin-left:0.5rem;">🐙 Source on GitHub</a>
+  </div>
+</div>
 
 ---
 
-## 🚀 Executive Summary
+## 📓 Notebook Snippet
 
-We analyzed **2.2 million Amazon UK product records** in Python notebooks. After data cleaning and feature engineering, we trained:
+```python
+# Feature engineering: reviews per pound
+df_clean['review_intensity'] = df_clean['reviews'] / (df_clean['price'] + 1)
 
-- **Linear Regression** (baseline)  
-- **Random Forest Regression**
-
-🔹 **Random Forest** achieved **MAE: 11.38** and **RMSE: 59.66**, vs. linear’s MAE: 11.56 & RMSE: 87.13.  
-🔹 **Top predictors**: review volume and bestseller status.
-
-> These insights help sellers optimize inventory, pricing, and promotions.
-
----
-
-## 🛠️ Methodology
-
-1. **Data Collection**  
-   - **Sales** (`data/sales.csv`): daily units sold, revenue, price (2020–2024)  
-   - **Reviews** (`data/reviews.csv`): review text, star rating, date  
-   - **Metadata** (`data/products.csv`): ASIN, category, launch date, bestseller flag  
-
-2. **Data Cleaning**  
-   - Removed outliers via IQR filtering  
-   - Imputed missing values  
-
-3. **Feature Engineering**  
-   ```python
-   df['reviews_per_star']   = df['reviews'] / (df['stars'] + 1)
-   df['price_per_star']     = df['price']   / (df['stars'] + 1)
-   df['review_intensity']   = df['reviews'] / (df['price'] + 1)
+# Quick corr heatmap
+import seaborn as sns
+sns.heatmap(
+    df_clean[['review_intensity','reviews','price','stars']].corr(),
+    annot=True, cmap='coolwarm'
+)
