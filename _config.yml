@@ -1,5 +1,38 @@
----
-layout: default
-title: "Amazon Sales & Reviews Analysis"
----
+# Site settings
+title: "Rolando Villca – Data Science Portfolio"
+description: "Portfolio showcasing data science projects by Rolando Villca"
+url: "https://rolando-villca.github.io" # your live site URL
+baseurl: ""                            # leave blank for user site
 
+# Build settings
+theme: minima                         # or another supported GitHub Pages theme
+markdown: kramdown
+kramdown:
+  input: GFM                          # GitHub‐flavored markdown
+
+# Plugins
+plugins:
+  - jekyll-seo-tag
+  - jekyll-feed
+  - jekyll-emoji
+
+# Emoji settings (jemoji)
+emoji:
+  src: "https://github.githubassets.com/images/icons/emoji/"
+  ext: ".png"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+
+# Defaults for posts/pages (optional)
+defaults:
+  - scope:
+      path: ""                        # empty string means all files
+      type: "pages"
+    values:
+      layout: "default"
+      author: "Rolando Villca"
