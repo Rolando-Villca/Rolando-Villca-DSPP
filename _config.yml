@@ -1,5 +1,5 @@
-theme: jekyll-theme-cayman
+---
+layout: default
+title: "Amazon Sales & Reviews Analysis"
+---
 
-# Tell Jekyll to copy this file into the site build:
-include:
-  - final_report.docx
