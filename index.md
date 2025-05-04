@@ -143,7 +143,7 @@ Review-centric features—especially `review_intensity`—drive monthly sales. R
 
   </div> <!-- /.main-content -->
 
-<aside class="sidebar">
+  <aside class="sidebar">
     <h3>📊 More Visualisations</h3>
     <img src="{{ site.baseurl }}/assets/price-histogram.png" alt="Price histogram"/>
     <img src="{{ site.baseurl }}/assets/sales-histogram.png" alt="Sales histogram"/>
@@ -151,4 +151,4 @@ Review-centric features—especially `review_intensity`—drive monthly sales. R
     <img src="{{ site.baseurl }}/assets/corr-heatmap.png" alt="Correlation heatmap"/>
   </aside>
 
-</div>
+</div> <!-- /.page-layout -->
