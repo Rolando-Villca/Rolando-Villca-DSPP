@@ -3,6 +3,21 @@ layout: default
 title: "Amazon Sales & Reviews Analysis"
 ---
 
+## :rocket: Executive Summary  
+<a name="executive-summary"></a>
+
+In this project we analysed **2.22 million** Amazon UK listings to predict monthly sales volume (`boughtInLastMonth`) from product metadata.  
+Key highlights:
+
+- **Skewed distributions** in price and sales required log-scaling and careful filtering.  
+- **Feature engineering** (e.g. `review_intensity`) boosted signal beyond raw counts.  
+- Compared **three models**: Linear Regression, Random Forest, and Random Forest with `log1p` target.  
+- **Best model** (RF + log target) achieved **MAE 169.4** and **R² 0.242**, cutting error by ~17 %.  
+- **Review-based metrics** (engagement per £, total reviews) proved more predictive than price alone.
+
+[Jump to Data Description](#data-description)
+
+---
 
 # Amazon Sales & Reviews Analysis
 
@@ -14,19 +29,18 @@ title: "Amazon Sales & Reviews Analysis"
     <p><strong>Performance:</strong> MAE 169.4 · R² 0.242</p>
     <a class="button primary" href="#data-description">Jump to Data Description</a>
   </div>
-</div>
 ---
 
 ## 📋 Table of Contents
-
-1. [Data Description](#data-description)  
-2. [Exploratory Data Analysis](#exploratory-data-analysis)  
-3. [Feature Engineering](#feature-engineering)  
-4. [Modelling & Evaluation](#modelling--evaluation)  
-5. [Feature Importance](#feature-importance)  
-6. [Discussion & Next Steps](#discussion--next-steps)  
-7. [Conclusion](#conclusion)  
-8. [Reflection](#reflection)  
+1. [Executive Summary](#executive-summary)  
+2. [Data Description](#data-description)  
+3. [Exploratory Data Analysis](#exploratory-data-analysis)  
+4. [Feature Engineering](#feature-engineering)  
+5. [Modelling & Evaluation](#modelling--evaluation)  
+6. [Feature Importance](#feature-importance)  
+7. [Discussion & Next Steps](#discussion--next-steps)  
+8. [Conclusion](#conclusion)  
+9. [Reflection](#reflection)  
 
 ---
 
