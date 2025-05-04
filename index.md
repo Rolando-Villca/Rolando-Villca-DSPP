@@ -14,49 +14,55 @@ title: "Amazon Sales & Reviews Analysis"
   </div>
 </div>
 
-## 🚀 Executive Summary
+## Introduction  
+<a name="introduction"></a>
+
+In this analysis, we harness public Amazon UK product metadata—price, star ratings, review counts, bestseller status—to uncover the key drivers of monthly sales volume. By combining exploratory data analysis with machine-learning models, we translate raw data into actionable e-commerce insights.
+
+## 📖 Research Question  
+<a name="research-question"></a>
+
+**How can Amazon sales and review data be analysed to extract meaningful business insights and predict monthly sales volume?**
+
+## 🚀 Executive Summary  
 <a name="executive-summary"></a>
 
-In this project, we analysed **2.22 million** Amazon UK product listings to predict **monthly sales volume** using structured metadata.  
-**Key highlights:**  
-- Skewed price and sales distributions required log-scaling and focused filtering  
-- Domain-driven feature engineering (e.g. `review_intensity`) enhanced predictive signal  
-- Compared three models: Linear Regression, Random Forest, and Random Forest on a `log1p` target  
-- The best model (RF + log target) achieved **MAE 169.4** and **R² 0.242**, reducing error by ~17 %  
-- Review-based metrics outperformed price and ratings alone, guiding strategic engagement
+We processed **2.22 million** listings, engineered domain-driven features such as `review_intensity`, and compared three regression approaches.  
+- **RF + log target** was best: **MAE 169.4** | **R² 0.242** (-17 % error vs baseline).  
+- Review-based metrics (engagement per £, total reviews) outperformed price and rating alone.  
+- Findings guide sellers to prioritise review acquisition and visibility over pure price competition.
 
 ---
+
 ## Data Description  
 <a name="data-description"></a>
 
-*Explain the raw dataset (2.22 million rows, 10 columns), no missing values, extreme skew.*  
-*Filtering: dropped 18 price errors, ~2.06 million zero-sales, leaving 161 315 active listings.*
+Our raw dataset held **2 222 742** rows and 10 columns, with no missing values but extreme right skew in numeric fields. We:  
+1. Dropped **18** products with zero/negative prices.  
+2. Removed ~2.06 million entries with no sales, focusing on **161 315** active listings.  
 
-| Column                | Description                        |
-|-----------------------|------------------------------------|
-| `stars`               | Avg. rating (0–5); 61 % unrated    |
-| `reviews`             | Total review count                 |
-| `price`               | £0.20–£100 000                     |
-| `boughtInLastMonth`   | Units sold in last 30 days         |
-| `isBestSeller`        | Bestseller badge flag (0 or 1)     |
-| `categoryName`        | Product category                   |
+| Column               | Description                         |
+|----------------------|-------------------------------------|
+| `stars`              | Avg. rating (0–5); 61 % unrated     |
+| `reviews`            | Total review count                  |
+| `price`              | £0.20–£100 000                      |
+| `boughtInLastMonth`  | Units sold in last 30 days          |
+| `isBestSeller`       | Bestseller badge (0 or 1)           |
+| `categoryName`       | Product category                    |
 
 ---
 
 ## Exploratory Data Analysis  
 <a name="exploratory-data-analysis"></a>
 
-![Price Distribution]({{ site.baseurl }}/assets/price-histogram.png)
+![Price Distribution]({{ site.baseurl }}/assets/price-histogram.png)  
+- Prices cluster between £5–£50, with psychological peaks at £9.99 and £19.99.
 
-- Most product prices fall between £5–£50, with peaks at £9.99 and £19.99.
+![Sales Distribution]({{ site.baseurl }}/assets/sales-histogram.png)  
+- The top 10 % of products account for 75 % of monthly sales volume.
 
-![Sales Distribution]({{ site.baseurl }}/assets/sales-histogram.png)
-
-- The top decile of products drives 75 % of total sales volume.
-
-![Price vs Sales (hexbin)]({{ site.baseurl }}/assets/amazon-hexbin.png)
-
-- Log–log scaling reveals a weak inverse relationship, with hotspots at £10–20 and 100–500 units.
+![Price vs Sales (hexbin)]({{ site.baseurl }}/assets/amazon-hexbin.png)  
+- Log–log scaling shows a weak inverse slope; hot-spots around £10–20 with 100–500 units.
 
 ---
 
@@ -64,14 +70,11 @@ In this project, we analysed **2.22 million** Amazon UK product listings to pred
 <a name="feature-engineering"></a>
 
 python
-df_clean['review_intensity'] = df_clean['reviews'] / (df_clean['price'] + 1)
-df_clean['reviews_per_star']  = df_clean['reviews'] / (df_clean['stars'] + 1)
-# 'price_per_star' dropped later to avoid collinearity
+df_clean['review_intensity']   = df_clean['reviews'] / (df_clean['price'] + 1)
+df_clean['reviews_per_star']   = df_clean['reviews'] / (df_clean['stars'] + 1)
+# 'price_per_star' was later dropped to avoid collinearity
 
 ---
-
-### Part 2 (Modelling → Reflection)
-
 ## Modelling & Evaluation  
 <a name="modelling--evaluation"></a>
 
@@ -81,7 +84,7 @@ df_clean['reviews_per_star']  = df_clean['reviews'] / (df_clean['stars'] + 1)
 | Random Forest       | 202.73   | 0.2071   | 574 ± 6      |
 | **RF + log target** | **169.42** | **0.2424** | **559 ± 5** |
 
-- Applying `log1p` stabilized variance, reducing MAE by ~17 %.
+- Applying `log1p` stabilised variance, cutting MAE by ~17 %.
 
 ---
 
@@ -97,21 +100,20 @@ df_clean['reviews_per_star']  = df_clean['reviews'] / (df_clean['stars'] + 1)
 | 5    | `isBestSeller`     | 0.05       |
 | 6    | Category dummies   | 0.11       |
 
-![Feature Importance]({{ site.baseurl }}/assets/feature-importance.png)
-
-- Future work: validate importances with permutation importance or SHAP.
+![Feature Importance]({{ site.baseurl }}/assets/feature-importance.png)  
+- Future work: validate with permutation importance or SHAP.
 
 ---
 
 ## Discussion & Next Steps  
 <a name="discussion--next-steps"></a>
 
-Our best model explains ~24 % of variance; missing factors such as seasonality, marketing spend, and brand loyalty remain unobserved.  
+Our best model explains ~24 % of variance; key drivers like seasonality, marketing spend, and brand loyalty are missing.  
 **Next steps:**  
-1. Hyperparameter optimization (e.g., RandomizedSearch)  
-2. Explore gradient boosting (XGBoost, LightGBM, CatBoost)  
+1. Hyperparameter optimisation (e.g. RandomizedSearch)  
+2. Experiment with XGBoost, LightGBM, CatBoost  
 3. Incorporate temporal features to capture seasonality  
-4. Apply sentiment analysis to review text  
+4. Apply NLP-based sentiment analysis on reviews  
 5. Build category-specific models via clustering
 
 ---
@@ -119,7 +121,7 @@ Our best model explains ~24 % of variance; missing factors such as seasonality, 
 ## Conclusion  
 <a name="conclusion"></a>
 
-Review-centric metrics—particularly `review_intensity`—are the strongest signals for monthly sales volume on Amazon UK. A Random Forest on a log-transformed target produced the best performance (MAE 169.4, R² 0.242), underscoring the importance of handling skewed data. Sellers should prioritize review acquisition and engagement, and future work will benefit from integrating temporal and contextual marketing data.
+Review-centric features—especially `review_intensity`—are the dominant signals for monthly sales. RF + log target produced the best trade-off (MAE 169.4, R² 0.242), highlighting the importance of handling skew. Sellers should invest in review engagement and further integrate temporal and marketing data to improve forecasting.
 
 ---
 
@@ -129,8 +131,8 @@ Review-centric metrics—particularly `review_intensity`—are the strongest sig
 > **📝 Reflection**  
 > - Feature engineering cut MAE by ~10 %.  
 > - Log-scaling resolved heteroscedastic errors.  
-> - RF + log target outperformed the baselines.  
-> - Next: integrate seasonality, sentiment analysis, and advanced hyperparameter tuning.
+> - RF + log target outperformed both baselines.  
+> - **Next:** integrate seasonality, sentiment analysis, and advanced hyperparameter tuning.
 
 ---
 
