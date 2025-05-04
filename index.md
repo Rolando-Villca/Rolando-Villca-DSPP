@@ -134,4 +134,3 @@ Review-centric metrics (especially `review_intensity`) are the strongest sales p
 ---
 
 *All visuals and full code are available in the [analysis notebook](analysis_notebook.ipynb).*  
-![image](https://github.com/user-attachments/assets/a39f522b-d453-496e-9a01-ae1ecbfbb470)
