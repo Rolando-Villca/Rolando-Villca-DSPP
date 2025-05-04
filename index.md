@@ -6,6 +6,7 @@ title: "Amazon Sales & Reviews Analysis"
 # Amazon Sales & Reviews Analysis
 
 <div class="project-card">
+  <img src="{{ site.baseurl }}/assets/amazon-hexbin.png" alt="Hexbin: Price vs Sales" />
   <div class="project-summary">
     <p><strong>Dataset:</strong> 2.22 million UK listings</p>
     <p><strong>Tools:</strong> Python · pandas · scikit-learn · Jupyter</p>
@@ -27,17 +28,20 @@ In this analysis, we harness public Amazon UK product metadata—price, star rat
 <a name="executive-summary"></a>
 
 We processed **2.22 million** listings, engineered domain-driven features such as `review_intensity`, and compared three regression approaches.  
-- **RF + log target** was best: MAE 169.4 | R² 0.242 (–17 % error vs baseline).  
-- Review-based metrics (engagement per £, total reviews) outperformed price and rating alone.  
-- Findings guide sellers to prioritise review acquisition and visibility over pure price competition.
+- **RF + log target** was best: MAE 169.4 | R² 0.242 (−17 % error vs baseline)  
+- Review-based metrics (engagement per £, total reviews) outperformed price and rating  
+- Findings guide sellers to prioritise review acquisition and visibility over price cuts
 ---
+
+<div class="page-layout">
+  <div class="main-content">
 
 ## Data Description  
 <a name="data-description"></a>
 
 Our raw dataset held **2 222 742** rows and 10 columns, with no missing values but extreme right skew. We:  
-1. Dropped **18** products with zero/negative prices.  
-2. Removed ~2.06 million entries with no sales, focusing on **161 315** active listings.  
+1. Dropped **18** products with zero/negative prices  
+2. Removed ~2.06 million listings with no sales, leaving **161 315** active items  
 
 | Column               | Description                         |
 |----------------------|-------------------------------------|
@@ -54,98 +58,101 @@ Our raw dataset held **2 222 742** rows and 10 columns, with no missing values b
 <a name="exploratory-data-analysis"></a>
 
 ![Price Distribution]({{ site.baseurl }}/assets/price-histogram.png)  
-- Prices cluster at £5–£50, with peaks at £9.99 & £19.99.
+- Prices cluster between £5–£50, with peaks at £9.99 & £19.99
 
 ![Sales Distribution]({{ site.baseurl }}/assets/sales-histogram.png)  
-- Top 10 % of products drive 75 % of monthly volume.
+- Top 10 % of products drive 75 % of monthly sales
 
 ![Price vs Sales (hexbin)]({{ site.baseurl }}/assets/amazon-hexbin.png)  
-- Log–log scaling shows a weak inverse slope; hotspots at ~£10–£20 & 100–500 units.
+- Log–log scaling shows weak inverse relationship; hotspots around £10–20 & 100–500 units
+
 ---
 
 ## Feature Engineering  
 <a name="feature-engineering"></a>
 
 python
-df_clean['review_intensity'] = df_clean['reviews'] / (df_clean['price'] + 1)
+df_clean['review_intensity']  = df_clean['reviews'] / (df_clean['price'] + 1)
 df_clean['reviews_per_star']  = df_clean['reviews'] / (df_clean['stars'] + 1)
-# 'price_per_star' dropped later to avoid collinearity
-## Modelling & Evaluation  
+# 'price_per_star' dropped to avoid collinearity
+
+---
+## 5️⃣ Modelling & Metrics Summary  
 <a name="modelling--evaluation"></a>
 
-| Model               | MAE      | R²       | CV-RMSE ± SD |
-|---------------------|----------|----------|--------------|
-| Linear Regression   | 204.12   | 0.2177   | 567 ± 4      |
-| Random Forest       | 202.73   | 0.2071   | 574 ± 6      |
-| **RF + log target** | **169.42** | **0.2424** | **559 ± 5** |
+| Model                | MAE      | RMSE     | R²       | CV-RMSE ± SD |
+|----------------------|----------|----------|----------|--------------|
+| Linear Regression    | 204.12   | 568.80   | 0.2177   | 567 ± 4      |
+| Random Forest        | 202.73   | 572.64   | 0.2071   | 574 ± 6      |
+| **RF + log target**  | **169.42** | **559.74** | **0.2424** | **559 ± 5** |
 
-- Applying `log1p` to the target stabilised variance and cut MAE by ~17 %.
+> *Applied `log1p` to stabilise variance and cut MAE by ~17 %.*
 
 ---
 
-## Feature Importance  
+## 6️⃣ Feature Importance & Insights  
 <a name="feature-importance"></a>
 
-| Rank | Feature            | Importance |
-|------|--------------------|------------|
-| 1    | `review_intensity` | 0.32       |
-| 2    | `reviews`          | 0.26       |
-| 3    | `price`            | 0.18       |
-| 4    | `stars`            | 0.08       |
-| 5    | `isBestSeller`     | 0.05       |
-| 6    | Category dummies   | 0.11       |
+| Rank | Feature              | Importance |
+|------|----------------------|------------|
+| 1    | `review_intensity`   | 0.32       |
+| 2    | `reviews`            | 0.26       |
+| 3    | `price`              | 0.18       |
+| 4    | `stars`              | 0.08       |
+| 5    | `isBestSeller`       | 0.05       |
+| 6    | Category dummies     | 0.11       |
 
 ![Feature Importance]({{ site.baseurl }}/assets/feature-importance.png)
 
-- In future work, validate these importances with permutation-based methods or SHAP for deeper insight.  
+> *Future work: validate with permutation importance or SHAP.*
 
 ---
 
 ## Discussion & Next Steps  
 <a name="discussion--next-steps"></a>
 
-Our best model explains ~24 % of variance; drivers such as seasonality, marketing spend, and brand loyalty remain unobserved.  
-**Next steps:**  
-1. Hyperparameter optimisation (e.g. RandomizedSearch)  
-2. Experiment with XGBoost / LightGBM / CatBoost  
-3. Incorporate temporal features to capture seasonality  
-4. Apply NLP-based sentiment analysis  
-5. Build category-specific models via clustering
+Our best model explains ~24 % of variance; unobserved factors like seasonality and marketing spend remain.  
+**Next:**  
+1. Hyperparameter optimisation (RandomizedSearch)  
+2. Test XGBoost / LightGBM / CatBoost  
+3. Add temporal features for seasonality  
+4. Apply sentiment analysis on reviews  
+5. Build category-specific models
 
 ---
 
 ## Conclusion  
 <a name="conclusion"></a>
 
-Review-centric features—especially `review_intensity`—are the dominant signals for monthly sales. RF + log target gave the best trade-off (MAE 169.4, R² 0.242), highlighting the importance of handling skew. Sellers should invest in review engagement and integrate temporal & marketing data to improve forecasting.
+Review-centric features—especially `review_intensity`—drive monthly sales. RF + log target yielded the best trade-off (MAE 169.4, R² 0.242). Sellers should focus on review engagement and integrate temporal/marketing data for better forecasts.
 
 ---
 
-## Reflection  
+## 📝 Reflection  
 <a name="reflection"></a>
 
-> **📝 Reflection**  
 > - Feature engineering cut MAE by ~10 %.  
 > - Log-scaling resolved heteroscedastic errors.  
-> - RF + log target outperformed both baselines.  
-> - **Next:** integrate seasonality, sentiment analysis, and advanced hyperparameter tuning.
+> - RF + log target outperformed baselines.  
+> - **Next:** seasonality, sentiment, advanced tuning.
 
 ---
 
-## Download Materials  
+## 📄 Download Materials  
 <a name="download-materials"></a>
 
 [![Report-DOCX](https://img.shields.io/badge/Report-DOCX-blue)]({{ site.baseurl }}/assets/final_report.docx)  
 [![Notebook-IPYNB](https://img.shields.io/badge/Notebook-IPYNB-orange)]({{ site.baseurl }}/analysis_notebook.ipynb)
 
-</div> <!-- /.main-content -->
+  </div> <!-- /.main-content -->
 
-<aside class="sidebar">
-  ## 📊 More Visualisations
+  <aside class="sidebar">
+    ## 📊 More Visualisations
 
-  ![Price Distribution]({{ site.baseurl }}/assets/price-histogram.png)
-  ![Sales Distribution]({{ site.baseurl }}/assets/sales-histogram.png)
-  ![Price vs Sales (hexbin)]({{ site.baseurl }}/assets/amazon-hexbin.png)
-  ![Correlation Matrix]({{ site.baseurl }}/assets/corr-heatmap.png)
-</aside>
+    ![Price Dist.]({{ site.baseurl }}/assets/price-histogram.png)
+    ![Sales Dist.]({{ site.baseurl }}/assets/sales-histogram.png)
+    ![Hexbin]({{ site.baseurl }}/assets/amazon-hexbin.png)
+    ![Corr Heatmap]({{ site.baseurl }}/assets/corr-heatmap.png)
+  </aside>
 </div> <!-- /.page-layout -->
+
