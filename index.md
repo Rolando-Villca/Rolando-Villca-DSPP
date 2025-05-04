@@ -14,7 +14,6 @@ title: "Amazon Sales & Reviews Analysis"
     <p><strong>Model:</strong> Random Forest on log-transformed target</p>
     <p><strong>Performance:</strong> MAE 169.4 · R² 0.242</p>
   </div>
-</div>
 ## Introduction  
 <a name="introduction"></a>
 
@@ -33,9 +32,6 @@ We processed **2.22 million** listings, engineered domain-driven features such a
 - Review-based metrics (engagement per £, total reviews) outperformed price and rating  
 - Findings guide sellers to prioritise review acquisition and visibility over price cuts
 ---
-
-<div class="page-layout">
-  <div class="main-content">
 
 ## Data Description  
 <a name="data-description"></a>
@@ -72,7 +68,7 @@ Our raw dataset held **2 222 742** rows and 10 columns, with no missing values b
 ## Feature Engineering  
 <a name="feature-engineering"></a>
 
-python
+``python
 df_clean['review_intensity']  = df_clean['reviews'] / (df_clean['price'] + 1)
 df_clean['reviews_per_star']  = df_clean['reviews'] / (df_clean['stars'] + 1)
 # 'price_per_star' dropped to avoid collinearity
