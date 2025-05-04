@@ -26,9 +26,6 @@ In this project, we analysed **2.22 million** Amazon UK product listings to pred
 - Review-based metrics outperformed price and ratings alone, guiding strategic engagement
 
 ---
-
-## 📋 Table of Contents
-
 ## Data Description  
 <a name="data-description"></a>
 
