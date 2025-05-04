@@ -1,30 +1,84 @@
-/* ── Two-column flex layout ────────────────────────────────────────── */
 
-.page-layout {
-  display: flex;
-  gap: 2rem;
-  margin-top: 2rem;
-}
+---
 
-.main-content {
-  flex: 3;
-}
+## Part 4: Modelling, Feature Importance, Discussion… Reflection & Sidebar
 
-.sidebar {
-  flex: 1;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 1rem;
-  border-radius: 8px;
-}
+```markdown
+## 5️⃣ Modelling & Metrics Summary  
+<a name="modelling--evaluation"></a>
 
-.sidebar img {
-  width: 100%;
-  margin-bottom: 1rem;
-  border-radius: 4px;
-}
+| Model                | MAE      | RMSE     | R²       | CV-RMSE ± SD |
+|----------------------|----------|----------|----------|--------------|
+| Linear Regression    | 204.12   | 568.80   | 0.2177   | 567 ± 4      |
+| Random Forest        | 202.73   | 572.64   | 0.2071   | 574 ± 6      |
+| **RF + log target**  | **169.42** | **559.74** | **0.2424** | **559 ± 5** |
 
-@media (max-width: 800px) {
-  .page-layout {
-    flex-direction: column;
-  }
-}
+> *Applied `log1p` to stabilise variance and cut MAE by ~17 %.*
+
+---
+
+## 6️⃣ Feature Importance & Insights  
+<a name="feature-importance"></a>
+
+| Rank | Feature              | Importance |
+|------|----------------------|------------|
+| 1    | `review_intensity`   | 0.32       |
+| 2    | `reviews`            | 0.26       |
+| 3    | `price`              | 0.18       |
+| 4    | `stars`              | 0.08       |
+| 5    | `isBestSeller`       | 0.05       |
+| 6    | Category dummies     | 0.11       |
+
+![Feature Importance]({{ site.baseurl }}/assets/feature-importance.png)
+
+> *Future work: validate with permutation importance or SHAP.*
+
+---
+
+## Discussion & Next Steps  
+<a name="discussion--next-steps"></a>
+
+Our best model explains ~24 % of variance; unobserved factors like seasonality and marketing spend remain.  
+**Next:**  
+1. Hyperparameter optimisation (RandomizedSearch)  
+2. Test XGBoost / LightGBM / CatBoost  
+3. Add temporal features for seasonality  
+4. Apply sentiment analysis on reviews  
+5. Build category-specific models
+
+---
+
+## Conclusion  
+<a name="conclusion"></a>
+
+Review-centric features—especially `review_intensity`—drive monthly sales. RF + log target yielded the best trade-off (MAE 169.4, R² 0.242). Sellers should focus on review engagement and integrate temporal/marketing data for better forecasts.
+
+---
+
+## 📝 Reflection  
+<a name="reflection"></a>
+
+> - Feature engineering cut MAE by ~10 %.  
+> - Log-scaling resolved heteroscedastic errors.  
+> - RF + log target outperformed baselines.  
+> - **Next:** seasonality, sentiment, advanced tuning.
+
+---
+
+## 📄 Download Materials  
+<a name="download-materials"></a>
+
+[![Report-DOCX](https://img.shields.io/badge/Report-DOCX-blue)]({{ site.baseurl }}/assets/final_report.docx)  
+[![Notebook-IPYNB](https://img.shields.io/badge/Notebook-IPYNB-orange)]({{ site.baseurl }}/analysis_notebook.ipynb)
+
+  </div> <!-- /.main-content -->
+
+  <aside class="sidebar">
+    ## 📊 More Visualisations
+
+    ![Price Dist.]({{ site.baseurl }}/assets/price-histogram.png)
+    ![Sales Dist.]({{ site.baseurl }}/assets/sales-histogram.png)
+    ![Hexbin]({{ site.baseurl }}/assets/amazon-hexbin.png)
+    ![Corr Heatmap]({{ site.baseurl }}/assets/corr-heatmap.png)
+  </aside>
+</div> <!-- /.page-layout -->
