@@ -6,15 +6,14 @@ permalink: /
 
 # Amazon Sales & Reviews Analysis
 
-<div class="project-card">
+
   <img src="{{ site.baseurl }}/assets/amazon-hexbin.png" alt="Hexbin: Price vs Sales" />
-  <div class="project-summary">
+  
     <p><strong>Dataset:</strong> 2.22 million UK listings</p>
     <p><strong>Tools:</strong> Python · pandas · scikit-learn · Jupyter</p>
     <p><strong>Model:</strong> Random Forest on log-transformed target</p>
     <p><strong>Performance:</strong> MAE 169.4 · R² 0.242</p>
-  </div>
-</div>
+
 ## Introduction  
 In this analysis, we harness public Amazon UK product metadata—price, star ratings, review counts, bestseller status—to uncover the key drivers of monthly sales volume. By combining exploratory data analysis with machine-learning models, we translate raw data into actionable e-commerce insights.
 
