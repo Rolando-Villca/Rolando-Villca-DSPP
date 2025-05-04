@@ -1,32 +1,14 @@
-# ──────────────────────────────────────────────────────────────────────────
-# Jekyll configuration for Amazon Sales & Reviews Analysis project page
-# ──────────────────────────────────────────────────────────────────────────
-
-# Site settings
 title: "Amazon Sales & Reviews Analysis"
 description: "Predicting monthly units sold on Amazon UK from product metadata"
-baseurl: "/Rolando-Villca-DSPP"  # ensures asset paths resolve correctly under /Rolando-Villca-DSPP
 
-# Theme
 theme: jekyll-theme-slate
-
-# Markdown & kramdown settings
 markdown: kramdown
 kramdown:
   input: GFM
 
-# Plugins for SEO, RSS feed, and emoji support
 plugins:
   - jekyll-seo-tag
   - jekyll-feed
   - jekyll-emoji
 
-# Emoji image source (optional override)
-emoji:
-  src: "https://github.githubassets.com/images/icons/emoji/"
-  ext: ".png"
-
-# Files & folders to skip during build
-exclude:
-  - node_modules
-  - vendor
+baseurl: "/Rolando-Villca-DSPP"
