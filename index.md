@@ -3,7 +3,7 @@ layout: default
 title: "Amazon Sales & Reviews Analysis"
 ---
 
-## :rocket: Executive Summary  
+## 🚀 Executive Summary
 <a name="executive-summary"></a>
 
 In this project we analysed **2.22 million** Amazon UK listings to predict monthly sales volume (`boughtInLastMonth`) from product metadata.  
