@@ -134,14 +134,11 @@ Review-centric features—especially `review_intensity`—are the dominant signa
 > - RF + log target outperformed both baselines.  
 > - **Next:** integrate seasonality, sentiment analysis, and advanced hyperparameter tuning.
 
----
+--
+## 📄 Download Materials  
+<a name="download-materials"></a>
 
-## 📄 Full Project Report  
-<a name="full-report"></a>
+[![Download Full Report](https://img.shields.io/badge/Report-DOCX-blue)]({{ site.baseurl }}/assets/final_report.docx)  
+[![Open Analysis Notebook](https://img.shields.io/badge/Notebook-IPYNB-orange)]({{ site.baseurl }}/analysis_notebook.ipynb)  
 
-[![Download Report](https://img.shields.io/badge/Report-DOCX-blue)]({{ site.baseurl }}/assets/final_report.docx)  
-*Click to download the complete write-up of this analysis.*
-
-
-*Full code and visuals are available in the [analysis notebook](analysis_notebook.ipynb).*
 
