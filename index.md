@@ -59,7 +59,7 @@ Our raw dataset held **2 222 742** rows and 10 columns, with no missing values b
 ``python
 df_clean['review_intensity']  = df_clean['reviews'] / (df_clean['price']   + 1)
 df_clean['reviews_per_star']  = df_clean['reviews'] / (df_clean['stars']   + 1)
-# 'price_per_star' was dropped later to avoid collinearity
+## 'price_per_star' was dropped later to avoid collinearity
 
 ## 4️⃣ Modelling & Metrics Summary  
 | Model               | MAE      | RMSE     | R²       |
