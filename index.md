@@ -26,6 +26,7 @@ We processed **2.22 million** listings, engineered domain-driven features such a
 - **RF + log target** was best (MAE 169.4, R² 0.242; −17 % error vs baseline).  
 - Review-based metrics outperformed price and ratings alone.  
 - Sellers should prioritise review acquisition and visibility to boost sales.
+--- 
 ## 1️⃣ Data Description  
 Our raw dataset held **2 222 742** rows and 10 columns, with no missing values but extreme right skew. We:  
 1. Dropped **18** products with zero/negative prices.  
@@ -59,7 +60,7 @@ Our raw dataset held **2 222 742** rows and 10 columns, with no missing values b
 ``python
 df_clean['review_intensity']  = df_clean['reviews'] / (df_clean['price']   + 1)
 df_clean['reviews_per_star']  = df_clean['reviews'] / (df_clean['stars']   + 1)
-## 'price_per_star' was dropped later to avoid collinearity
+###'price_per_star' was dropped later to avoid collinearity
 
 ## 4️⃣ Modelling & Metrics Summary  
 | Model               | MAE      | RMSE     | R²       |
