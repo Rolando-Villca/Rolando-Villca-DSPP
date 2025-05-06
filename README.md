@@ -43,3 +43,17 @@ This project explores how structured product metadata (price, star ratings, revi
 1. **Clone this repo:**  
    ```bash
    git clone https://github.com/Rolando-Villca/Rolando-Villca-DSPP.git
+   ```
+2. **Open the index page** in your browser:  
+   https://rolando-villca.github.io/Rolando-Villca-DSPP/
+3. **View or run** the Jupyter notebook:  
+   ```bash
+   cd Rolando-Villca-DSPP
+   jupyter notebook analysis_notebook.ipynb
+   ```
+4. **Inspect the code, rerun cells,** and review exported assets under `assets/`.
+
+---
+
+_For detailed methodology, results, and full discussion, see the [live index page](https://rolando-villca.github.io/Rolando-Villca-DSPP/) or open the notebook in this repo._
+![image](https://github.com/user-attachments/assets/1dbc5814-1c51-4713-a7c6-0ba3b7be5433)
