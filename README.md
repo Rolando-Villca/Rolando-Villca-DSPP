@@ -55,5 +55,4 @@ This project explores how structured product metadata (price, star ratings, revi
 
 ---
 
-_For detailed methodology, results, and full discussion, see the [live index page](https://rolando-villca.github.io/Rolando-Villca-DSPP/) or open the notebook in this repo._
-![image](https://github.com/user-attachments/assets/1dbc5814-1c51-4713-a7c6-0ba3b7be5433)
+_For detailed methodology, results, and full discussion, see the [live index page](https://rolando-villca.github.io/Rolando-Villca-DSPP/)
