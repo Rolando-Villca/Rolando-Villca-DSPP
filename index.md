@@ -72,8 +72,9 @@ df_clean['reviews_per_star']  = df_clean['reviews'] / (df_clean['stars']   + 1)
 ###'price_per_star' was dropped later to avoid collinearity
 
 ## 4️⃣ Modelling & Metrics Summary  
+
 | Model                 | MAE        | RMSE       | R²         |
-|---------------------  |----------  |----------  |----------  |
+|-----------------------|------------|------------|------------|
 | `Linear Regression`   | 204.12     | 568.80     | 0.2177     |
 | `Random Forest`       | 202.73     | 572.64     | 0.2071     |
 | **RF + log target**   | **169.42** | **559.74** | **0.2424** |
@@ -83,6 +84,7 @@ df_clean['reviews_per_star']  = df_clean['reviews'] / (df_clean['stars']   + 1)
 ---
 
 ## 5️⃣ Feature Importance  
+
 | Rank | Feature            | Importance |
 |------|--------------------|------------|
 | 1    | `review_intensity` | 0.32       |
@@ -90,7 +92,7 @@ df_clean['reviews_per_star']  = df_clean['reviews'] / (df_clean['stars']   + 1)
 | 3    | `price`            | 0.18       |
 | 4    | `stars`            | 0.08       |
 | 5    | `isBestSeller`     | 0.05       |
-| 6    | 'Category dummies` | 0.11       |
+| 6    | `Category dummies` | 0.11       |
 
 ![Feature Importance]({{ site.baseurl }}/assets/feature-importance.png)
 
