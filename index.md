@@ -15,18 +15,27 @@ permalink: /
     <p><strong>Performance:</strong> MAE 169.4 · R² 0.242</p>
   </div>
 </div>
+
+--- 
+
 ## Introduction  
 In this analysis, we harness public Amazon UK product metadata—price, star ratings, review counts, bestseller status—to uncover the key drivers of monthly sales volume. By combining exploratory data analysis with machine-learning models, we translate raw data into actionable e-commerce insights.
 
+--- 
+
 ## 📖 Research Question  
 **How can Amazon sales and review data be analysed to extract meaningful business insights and predict monthly sales volume?**
+
+--- 
 
 ## 🚀 Executive Summary  
 We processed **2.22 million** listings, engineered domain-driven features such as `review_intensity`, and compared three regression approaches:  
 - **RF + log target** was best (MAE 169.4, R² 0.242; −17 % error vs baseline).  
 - Review-based metrics outperformed price and ratings alone.  
 - Sellers should prioritise review acquisition and visibility to boost sales.
+  
 --- 
+
 ## 1️⃣ Data Description  
 Our raw dataset held **2 222 742** rows and 10 columns, with no missing values but extreme right skew. We:  
 1. Dropped **18** products with zero/negative prices.  
