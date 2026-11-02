@@ -16,6 +16,47 @@ In a sales-driven labour planning approach, **Average Item Value (AIV)** and **A
 
 The final business objective is **more accurate labour requirements and better allocation of available hours**. Predicting AIV/ACP is an upstream step, not the final outcome.
 
+### Why AIV and ACP exist: a sales forecast is not a workload forecast
+
+Retail planning often starts with a **forecast of monetary sales (£)** for a store or division. Monetary sales are useful for commercial planning, but they cannot directly tell us the number of units colleagues need to handle. A department selling £10,000 of £2 products has a very different item workload from one selling £10,000 of £5 products.
+
+AIV and ACP are **historically observed conversion ratios**, not arbitrary adjustments or forecasts in themselves. At the same product-sector, store, time-period and sales-definition grain:
+
+```text
+Historical AIV (£/item) = historical sector sales (£) / historical items sold
+Historical ACP (£/case) = historical sector sales (£) / historical case equivalents
+
+Forecast sector items = forecast sector sales (£) / predicted AIV (£/item)
+Forecast sector cases = forecast sector sales (£) / predicted ACP (£/case)
+```
+
+This comes from the **value = quantity × average unit value** identity. It is well established in business measurement: price/quantity decomposition is described by the [IMF's price and volume guidance](https://www.elibrary.imf.org/display/book/9781475589870/ch008.xml); the [Office for National Statistics separates retail sales value from volume](https://www.ons.gov.uk/businessindustryandtrade/retailindustry/bulletins/retailsales/october2023); and [average selling price is conventionally measured as revenue divided by units sold](https://stripe.com/resources/more/average-selling-price-asp-in-sales).
+
+**The important difference between calculation and prediction:**
+
+- **Historically**, when the sales and quantity counts are known and consistently defined, dividing sales by AIV/ACP recovers the corresponding items/cases by definition.
+- **For future periods**, the quantity is only an **estimate** because forecast sales, sector mix and future AIV/ACP are unknown or uncertain. The identity is sound; the accuracy of its inputs is what must be tested.
+
+For example, suppose a fictional sector historically achieved **£40,000** of sales from **8,000 items** and **800 cases**, giving **AIV £5/item** and **ACP £50/case**. If its forecast sector sales are **£45,000** and those conversion ratios remain representative, the implied volume is **9,000 items** or **900 case equivalents**. That is a transparent and defensible starting estimate, **not a guaranteed forecast**.
+
+### Why derive quantities instead of predicting them directly?
+
+When a business already produces sales forecasts for labour planning, AIV and ACP allow that existing information to be translated into item and case **workload proxies** without first requiring a separate item-level demand forecasting pipeline. It is practical, interpretable and easy to reconcile to sales plans. A direct item/case demand forecasting model may ultimately perform better; it should be treated as a **challenger**, not dismissed.
+
+**Why improve AIV/ACP?** The ratios change when the product mix, realised selling prices, promotions, discounts, packaging or seasonal purchasing patterns change. Using one annual conversion factor in all quarters can therefore produce too many or too few forecast items/cases even if the sales forecast is accurate. Modelling those changes is intended to improve the **volume estimates feeding labour requirements**.
+
+### When is this method valid enough to use?
+
+A defensible implementation needs all of the following:
+
+1. **Matching numerator and denominator:** sales and item/case counts must refer to the same store/sector/time period, comparable transactions and treatment of returns, discounts and VAT.
+2. **Correct aggregation:** AIV/ACP for a combined group is **total sales ÷ total units**, not a simple unweighted mean of store or product ratios. Forecast sales must be allocated to the corresponding sector using the appropriate mix.
+3. **Positive, relevant ratios:** avoid zero/invalid denominators, examine mix and pricing shifts, and use a level of segmentation where the ratio is stable enough to forecast.
+4. **A realistic workload link:** forecast *case equivalents associated with sales* may differ from physical inbound cases, deliveries or replenishment tasks because of inventory movements, packaging and stocking policies. Those steps require separate validation.
+5. **Out-of-time evidence:** backtest the *derived items and cases* against actual volumes, compare static annual versus predicted quarterly drivers, then test the sensitivity of task-hours. Assess bias and error introduced by the **sales forecast** as well as the conversion factors.
+
+Industry labour-modelling practice recognises physical drivers such as **items and cases** as legitimate inputs to task-based workload estimates; see [Logile's discussion of engineered labour standards](https://www.logile.com/resources/blog/case-for-superior-retail-staffing-analysis-tools). This supports the concept of connecting units to task time; it does **not** validate any particular retailer's AIV/ACP estimates or establish staffing savings.
+
 ## 2. What AIV and ACP mean
 
 | Term | Plain-language meaning | Used to estimate |
