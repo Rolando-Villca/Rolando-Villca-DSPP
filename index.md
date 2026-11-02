@@ -126,3 +126,15 @@ Review-centric features—especially `review_intensity`—are the strongest sign
 [![Report-DOCX](https://img.shields.io/badge/Report-DOCX-blue)]({{ site.baseurl }}/assets/final_report.docx)  
 [![Notebook-IPYNB](https://img.shields.io/badge/Notebook-IPYNB-orange)]({{ site.baseurl }}/analysis_notebook.ipynb)
 
+
+---
+
+## More Data Science Portfolio Projects
+
+### Retail Item Demand Forecasting (Synthetic Demonstration)
+
+[**Explore the case study: forecasting charts, findings and conclusions**]({{ site.baseurl }}/projects/retail-item-demand-forecasting/)
+
+![Synthetic demand forecast error comparison]({{ site.baseurl }}/projects/retail-item-demand-forecasting/docs/figures/synthetic-error-metrics.svg)
+
+A reproducible seven-day-ahead seasonal-naive versus Gradient Boosting comparison using **only fictional data**. Includes three charts, a results table, methodology, limitations, Python code and tests. The statistics describe a public simulation, not measured business performance.
