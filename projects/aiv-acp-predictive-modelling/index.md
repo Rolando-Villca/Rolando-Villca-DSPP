@@ -18,6 +18,59 @@ The purpose of this research is to test whether **predicting the value-per-item 
 
 **Research question:** Can predictions of AIV and ACP, with validated quarterly adjustments, estimate future item and case workload more accurately than assumptions held constant across the year?
 
+## Why AIV and ACP exist in the first place
+
+A sales forecast gives the **expected value of sales (£)**. Many retail tasks, however, are driven by the **physical number of items or cases**, not the pounds taken at the till. AIV and ACP were introduced as practical conversion drivers so a sales-led forecast can also estimate item and case workload.
+
+They are not invented coefficients. They are **ratios observed in historical data**:
+
+| Historical measure | Calculation | Future volume estimate |
+| --- | --- | --- |
+| **Average Item Value (AIV)** | Historical sales ÷ historical items sold | Forecast sales ÷ predicted AIV = **estimated items** |
+| **Average Case Price (ACP)** | Historical sales ÷ historical case equivalents | Forecast sales ÷ predicted ACP = **estimated cases** |
+
+Put simply:
+
+```text
+Historical:  Sales value = Items × Average Item Value
+Forecast:    Expected items = Forecast sales ÷ Forecast AIV
+
+Historical:  Sales value = Cases × Average Case Price
+Forecast:    Expected cases = Forecast sales ÷ Forecast ACP
+```
+
+This is a normal **value–price–quantity relationship**, rather than an arbitrary method. The [IMF explains decomposing transaction value into price and quantity](https://www.elibrary.imf.org/display/book/9781475589870/ch008.xml), and the [Office for National Statistics publishes separate retail sales value and volume measures](https://www.ons.gov.uk/businessindustryandtrade/retailindustry/bulletins/retailsales/october2023). An average selling price can be calculated as [sales revenue divided by units sold](https://stripe.com/resources/more/average-selling-price-asp-in-sales).
+
+### An example of why this can predict volumes
+
+Imagine fictional historical sales of **£40,000** corresponded to **8,000 items** or **800 case equivalents**. That establishes a historical AIV of **£5 per item** and ACP of **£50 per case**.
+
+If next quarter's sector sales are expected to be **£45,000**, keeping those averages would imply **9,000 items**, or **900 cases**.
+
+This is a **reasonable, transparent starting forecast**, not a guarantee. Historically the conversion is an arithmetic identity. When estimating the future, it depends on the **accuracy of the forecast sales and of the predicted AIV/ACP**.
+
+### Why is predicting AIV/ACP an improvement opportunity?
+
+A single **annual** ratio assumes the relationship between sales and quantities stays representative all year. In practice that ratio may change with **product mix, price changes, promotions, discounts or seasonal purchasing patterns**. Predicting the ratio for a future quarter may therefore improve the number of items or cases derived from the same sales forecast.
+
+This is particularly useful when sales forecasting already exists: rather than replacing it, the project tests a way of converting that established forecast into more accurate **workload drivers**.
+
+**But it must be tested.** Forecast cases inferred from sales are **case equivalents**, not necessarily the exact physical cases delivered, moved or replenished. Inventory and delivery patterns can make those quantities different. And a separate direct item-volume forecasting model may turn out to be more accurate.
+
+### What would justify the method in an assessment?
+
+The method is defensible when historical sales and quantities are **matched on period, sector, store and definitions**; the ratio uses total sales divided by total units (not an unweighted average of ratios); and forecast values are compared with real future volumes.
+
+A proper evaluation should ask:
+
+1. Is quarterly predicted **AIV/ACP** more accurate than a static annual assumption?
+2. Does this result in lower error or bias in **forecast items or case equivalents**, once forecast sales and sector mix are included?
+3. Does the improved quantity estimate lead to more realistic **task-hour requirements**, using the correct units and time standard?
+
+Retail labour-modelling literature identifies **items and cases as standard activity drivers** for variable work; [Logile discusses that connection with engineered labour standards](https://www.logile.com/resources/blog/case-for-superior-retail-staffing-analysis-tools). It supports the approach of connecting volume to time, but does not prove this specific predictive model works.
+
+---
+
 ## What are AIV and ACP?
 
 | Driver | Definition | Purpose |
