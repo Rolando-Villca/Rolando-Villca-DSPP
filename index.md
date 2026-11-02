@@ -138,3 +138,11 @@ Review-centric features—especially `review_intensity`—are the strongest sign
 ![Synthetic demand forecast error comparison]({{ site.baseurl }}/projects/retail-item-demand-forecasting/docs/figures/synthetic-error-metrics.svg)
 
 A reproducible seven-day-ahead seasonal-naive versus Gradient Boosting comparison using **only fictional data**. Includes three charts, a results table, methodology, limitations, Python code and tests. The statistics describe a public simulation, not measured business performance.
+
+### Predicting AIV and ACP to Improve Retail Labour Planning (Synthetic Case Study)
+
+[**Explore the case study: what AIV/ACP mean and how value forecasts translate into task hours**]({{ site.baseurl }}/projects/aiv-acp-predictive-modelling/)
+
+![The illustrative journey from sales to items, cases, and task hours]({{ site.baseurl }}/projects/aiv-acp-predictive-modelling/assets/demand-to-hours.svg)
+
+A fictional reconstruction of a predictive modelling investigation into historical AIV/ACP drivers. Explains **sector mix, items, cases, IPC, task SMVs**, and the labour-planning rationale before exploring modelling. No real company information is published; quantitative model findings remain under review.
