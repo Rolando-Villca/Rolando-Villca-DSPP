@@ -142,6 +142,44 @@ The published Python demonstration currently provides synthetic quarterly data, 
 
 The reconstruction is **AI-assisted**. Original model code, model scores and business outcomes have not been independently verified and must not be attributed to the synthetic demo.
 
+## Weekly inflation — another essential part of the forecasting logic
+
+The purpose of AIV and ACP is to convert **sales into future items or case equivalents**. Since prices are not constant, the assumptions used for those conversions may need to change **week by week**, even when the wider model is evaluated quarterly.
+
+In a planning environment, the **Finance team can supply forward inflation assumptions** for the relevant weeks. For research and comparison, **published observed inflation** (for example, ONS CPI or a more relevant retail/product-category price index) can be used as a historical benchmark or scenario input. A generic economy-wide inflation index is **not automatically the same** as actual changes in this retailer's prices or sector mix.
+
+For a fictional annual inflation assumption `r` expressed as a **decimal annual rate**, one transparent way of deriving an illustrative constant weekly rate over 52 weeks is:
+
+```text
+weekly_rate = (1 + annual_rate) ** (1 / 52) - 1
+weekly_AIV = starting_AIV × (1 + weekly_rate) ** weeks_elapsed
+weekly_ACP = starting_ACP × (1 + weekly_rate) ** weeks_elapsed
+forecast_items_week = forecast_sector_sales_week / weekly_AIV
+forecast_cases_week = forecast_sector_sales_week / weekly_ACP
+```
+
+In real planning, use **week-specific assumptions directly when available**, rather than forcing an even weekly growth rate. When using a published index, the more appropriate calculation is often the **ratio of price-index levels between dates**. Never apply an annual or 12-month inflation percentage **every week**.
+
+**Three possible comparisons:**
+
+1. **Static annual driver:** keep the same AIV/ACP throughout the planning year.
+2. **Finance-adjusted driver:** apply the approved, week-dated forward inflation assumptions.
+3. **Historically informed driver:** model AIV/ACP and evaluate inflation-adjusted or observed-index alternatives, taking account of price changes and product mix.
+
+All three convert the **same sector sales forecast** into items/cases and downstream illustrative task-hours, so any improvement can be assessed fairly.
+
+### Important safeguards
+
+- **No double-counting:** AIV/ACP may already reflect inflation, mix and price changes learned from history. Adding another inflation uplift to a future nominal prediction without checking its definition would overstate the conversion driver and suppress forecast volumes.
+- **Consistent monetary basis:** compare nominal forecast sales with nominal AIV/ACP; only use inflation-adjusted (real) values if both sides are converted consistently.
+- **Publication timing:** official UK CPI is typically published **monthly, after the month measured**, not as a forward weekly schedule. In a realistic historical backtest, only use an observed rate **after its published release date**. For future weeks, use a genuine forecast/scenario, not the future actual value.
+- **Category relevance:** overall CPI may diverge sharply from specific food, household or other retail categories. Evaluate whether sector-specific indices or genuine known pricing plans explain the ratio more accurately.
+- **Separate the causes:** AIV/ACP can change due to actual prices, promotional mix, packaging or changing product composition. Inflation is only one influence on the value-to-quantity relationship.
+
+**Why this matters for labour:** rising AIV/ACP at a fixed nominal sales forecast implies **fewer estimated items/cases**, not more. A different planned sales figure or changes in mix can reverse this. Therefore, the portfolio should compare **actual item/case forecast error and workload-hour sensitivity**, rather than treating a simple increase in monetary values as an improvement.
+
+The example implementation in [`src/inflation.py`](src/inflation.py) uses fabricated inputs; see [`WORKLOAD_LOGIC.md`](WORKLOAD_LOGIC.md) for details.
+
 ## 6. Limitations and next steps
 
 - Predicting AIV/ACP accurately is only useful if it improves **volume estimates**, then downstream workload calculations.
