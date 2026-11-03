@@ -127,4 +127,4 @@ python -m src.experiment
 python -m unittest discover -s tests -v
 ```
 
-Expected generated files: `outputs/synthetic_results.json`, `outputs/synthetic_holdout_predictions.csv` and five SVGs under `outputs/figures/`. The five figures embedded in this document are committed static snapshots of the same seeded simulation. Results will change if the generator or model is modified; the published metrics should then be regenerated and updated.
+Expected generated files: `outputs/synthetic_results.json`, `outputs/synthetic_holdout_predictions.csv` and six SVGs under `outputs/figures/`. The six figures embedded in this document are committed static snapshots of the same seeded simulation. Results will change if the generator or model is modified; the published metrics should then be regenerated and updated.
