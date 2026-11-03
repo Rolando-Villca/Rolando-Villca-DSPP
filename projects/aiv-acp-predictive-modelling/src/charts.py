@@ -28,6 +28,29 @@ def create_charts(panel,test,output_dir="outputs/figures"):
     file=output/"historical-weekly-aiv.svg"
     fig.savefig(file);plt.close(fig);saved.append(file)
 
+    # Show exactly how the static 2025 flat-trading reference is chosen.
+    # The plotted line is a weekly mean, while the reference ratio is pooled
+    # sales divided by pooled item units, which is volume-weighted.
+    ref_source=panel.loc[
+        (panel.year==2025)&(panel.sector_id=="CATEGORY-A")
+    ].copy()
+    ref_weekly=ref_source.groupby("week").AIV_actual.mean()
+    ref_records=ref_source.loc[ref_source.week.between(18,30)]
+    ref_aiv=(ref_records.sector_actual_sales.sum()
+             /ref_records.items_actual.sum())
+    fig,ax=plt.subplots(figsize=(9.5,4.6))
+    ax.axvspan(18,30,alpha=.2,color="#e09d48",
+               label="Reference weeks 18–30")
+    ax.plot(ref_weekly.index,ref_weekly.values,color=COLOURS["actual"],
+            linewidth=2.5,label="Synthetic weekly AIV")
+    ax.axhline(ref_aiv,color=COLOURS["static"],linestyle="--",
+               label=f"Pooled reference AIV ≈ £{ref_aiv:.2f}")
+    ax.set(title="How the 2025 static AIV reference is chosen (synthetic)",
+           xlabel="Week of 2025",ylabel="AIV (£ per item)")
+    ax.legend();ax.grid(alpha=.2);fig.tight_layout()
+    file=output/"2025-aiv-reference-window.svg"
+    fig.savefig(file);plt.close(fig);saved.append(file)
+
     for ratio,filename in (
         ("AIV","q1-aiv-forecast.svg"),("ACP","q1-acp-forecast.svg")
     ):
