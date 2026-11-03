@@ -67,6 +67,12 @@ The model reduced **task-hours WAPE by 11.227 percentage points**, or approximat
 
 </details>
 
+### Where the 2025 static reference comes from
+
+![AIV across fictional 2025, highlighting the flat-period baseline weeks 18–30](assets/2025-aiv-reference-window.svg)
+
+For the static model, the **2025 reference period is a selected relatively flat *trading/sales* period**, not a claim that AIV itself is flat. Its overall ratio is constructed as **sum of sector sales ÷ sum of items (or cases)** across the reference weeks for each store-sector. The figure shows the six-store Category A illustration (pooled average AIV ≈ £3.86/item before weekly Finance-style adjustment). Using the individual weekly figures instead is precisely the additional information the predictive challenger seeks to exploit.
+
 ### Historical seasonality
 
 ![Historical weekly fictional AIV in category A for Q1 of 2022–2025](assets/historical-q1-aiv.svg)
