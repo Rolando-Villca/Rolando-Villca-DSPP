@@ -141,8 +141,8 @@ A reproducible seven-day-ahead seasonal-naive versus Gradient Boosting compariso
 
 ### Predicting AIV and ACP to Improve Retail Labour Planning (Synthetic Case Study)
 
-[**Explore the case study: what AIV/ACP mean and how value forecasts translate into task hours**]({{ site.baseurl }}/projects/aiv-acp-predictive-modelling/)
+[**Explore the complete case study: Q1 2026 AIV/ACP forecasts, graphs, labour-hours and findings**]({{ site.baseurl }}/projects/aiv-acp-predictive-modelling/)
 
-![The illustrative journey from sales to items, cases, and task hours]({{ site.baseurl }}/projects/aiv-acp-predictive-modelling/assets/demand-to-hours.svg)
+![Q1 2026 synthetic static-vs-predictive forecasting error for items, cases and task-hours]({{ site.baseurl }}/projects/aiv-acp-predictive-modelling/assets/downstream-wape.svg)
 
-A fictional reconstruction of a predictive modelling investigation into historical AIV/ACP drivers. Explains **sector mix, items, cases, IPC, task SMVs**, and the labour-planning rationale before exploring modelling. No real company information is published; quantitative model findings remain under review.
+An anonymised, fully synthetic experiment using **weekly 2022–2025 history to predict Q1 2026**. It compares historical flat-period AIV/ACP with Finance-style weekly inflation against directly predicted nominal ratios using the **same sales forecast and labour-hour calculations**. Includes five graphs, reproducible Python code and detailed limitations. On **fictional** data, task-hours WAPE was **20.929% for static + inflation versus 9.702% for the predictive challenger** — not a result measured in any actual business.
