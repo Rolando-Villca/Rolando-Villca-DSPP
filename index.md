@@ -138,3 +138,11 @@ Review-centric features—especially `review_intensity`—are the strongest sign
 ![Synthetic demand forecast error comparison]({{ site.baseurl }}/projects/retail-item-demand-forecasting/docs/figures/synthetic-error-metrics.svg)
 
 A reproducible seven-day-ahead seasonal-naive versus Gradient Boosting comparison using **only fictional data**. Includes three charts, a results table, methodology, limitations, Python code and tests. The statistics describe a public simulation, not measured business performance.
+
+### Predicting AIV and ACP to Improve Retail Labour Planning (Synthetic Case Study)
+
+[**Explore the complete case study: Q1 2026 AIV/ACP forecasts, graphs, labour-hours and findings**]({{ site.baseurl }}/projects/aiv-acp-predictive-modelling/)
+
+![Q1 2026 synthetic static-vs-predictive forecasting error for items, cases and task-hours]({{ site.baseurl }}/projects/aiv-acp-predictive-modelling/assets/downstream-wape.svg)
+
+An anonymised, fully synthetic experiment using **weekly 2022–2025 history to predict Q1 2026**. It compares historical flat-period AIV/ACP with Finance-style weekly inflation against directly predicted nominal ratios using the **same sales forecast and labour-hour calculations**. Includes five graphs, reproducible Python code and detailed limitations. On **fictional** data, task-hours WAPE was **20.929% for static + inflation versus 9.702% for the predictive challenger** — not a result measured in any actual business.
