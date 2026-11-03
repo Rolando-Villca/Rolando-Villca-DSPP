@@ -107,9 +107,9 @@ python -m src.experiment
 python -m unittest discover -s tests -v
 ```
 
-The script creates **five SVG charts**, a machine-readable results JSON file, and a **synthetic** holdout forecast CSV under `outputs/`. The output folder is ignored by Git. All visuals above are fixed snapshots from the same seeded synthetic demonstration; they do not contain genuine operational data.
+The script creates **six SVG charts**, a machine-readable results JSON file, and a **synthetic** holdout forecast CSV under `outputs/`. The output folder is ignored by Git. All visuals above are fixed snapshots from the same seeded synthetic demonstration; they do not contain genuine operational data.
 
-The 11 checks cover reproducibility, fictional identifiers, input/quantity consistency, chronological holdout separation, identical forecast sales, leakage safeguards, task-hour unit conversions and weekly inflation compounding.
+The automated checks cover reproducibility, fictional identifiers, input/quantity consistency, chronological holdout separation, identical forecast sales, leakage safeguards, task-hour unit conversions and weekly inflation compounding.
 
 ## 5. What must be proved before operational use
 
