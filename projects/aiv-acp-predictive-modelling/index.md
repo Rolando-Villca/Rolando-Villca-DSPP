@@ -51,6 +51,12 @@ Both methods receive the **same fictional forecast division sales, the same fixe
 
 ## 4. Results: what the synthetic data show
 
+### How the static AIV reference is calculated
+
+![Fictional 2025 AIV, showing the reference weeks 18–30](assets/2025-aiv-reference-window.svg)
+
+The traditional method averages sales and quantities from a **relatively flat sales period**, rather than predicting each week's AIV separately. In this fictional demonstration the baseline uses weeks 18–30 in 2025; **flat trading activity does not necessarily mean the AIV itself is flat**. The base ratio is calculated as total sales divided by total units for each fictional store-sector, and then adjusted for weekly inflation assumptions.
+
 ### Historical weekly AIV patterns
 
 ![Fictional weekly AIV from the first quarter of 2022 through 2025](assets/historical-q1-aiv.svg)
