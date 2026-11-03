@@ -39,46 +39,13 @@ But real averages can vary with the prices and mix of products purchased in diff
 
 Both methods receive the **same fictional forecast division sales, the same fixed sector mix and the same task SMVs**. Neither receives the held-out actual Q1 2026 item/case values.
 
-<grid columns={2} gap={3}>
-  <grid-item>
-    <box border radius="lg" padding={3} gap={2}>
-      <text weight="medium">A — Static + inflation</text>
-
-      **2025 flat-period AIV/ACP**
-
-      Historical reference weeks **18–30**, calculated as total sales divided by total units
-
-      <icon name="arrow-down" color="secondary" />
-
-      **Weekly Finance-style uplift**
-
-      Fictional annual assumptions compounded weekly: **2.6%** for remaining 2025 and **2.8%** for 2026
-
-      <icon name="arrow-down" color="secondary"/>
-
-      **Items, cases and task-hours**
-    </box>
-  </grid-item>
-  <grid-item>
-    <box border radius="lg" padding={3} gap={2}>
-      <text weight="medium">B — Predictive challenger</text>
-
-      **2022–2025 weekly AIV/ACP**
-
-      Four historical years, with fictional price trends and seasonality
-
-      <icon name="arrow-down" color="secondary"/>
-
-      **Ridge regression forecast**
-
-      Time trend, seasonal calendar features and fictional store/sector identities; **no separate inflation uplift**
-
-      <icon name="arrow-down" color="secondary"/>
-
-      **Items, cases and task-hours**
-    </box>
-  </grid-item>
-</grid>
+| | **Method A — Static + inflation** | **Method B — Predictive challenger** |
+| --- | --- | --- |
+| Data source | Historical **2025 weeks 18–30** ratios | Weekly observations from **2022–2025** |
+| How the drivers are forecast | Average sales ÷ actual item/case volume from the relatively flat reference period | Separate Ridge regressions on log AIV and log ACP, using calendar trend, seasonality and fictional series identity |
+| Price changes | Fictional Finance-style **weekly inflation adjustments**: 2.6% annual assumption for remaining 2025, 2.8% for 2026 | **No separate inflation feature or uplift** (nominal history can still reflect past price changes) |
+| Sales and workload inputs | Same forecast sales, fixed sector mix, and synthetic task SMVs | **Exactly the same** sales, sector mix, and task SMVs |
+| End result | Forecast items/cases → calculated task-hours | Forecast items/cases → calculated task-hours |
 
 **Scale of this public simulation:** 6 fictional stores × 4 fictional sectors × 208 historical weeks = **4,992 training observations**. The entire first **13 weeks of 2026**, or **312 observations**, were held out for evaluation.
 
