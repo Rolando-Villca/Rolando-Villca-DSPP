@@ -1,133 +1,137 @@
 ---
 layout: default
-title: "AIV and ACP | Predicting Physical Retail Workload"
+title: "Predicting AIV and ACP for Retail Labour Planning"
 permalink: /projects/aiv-acp-predictive-modelling/
 ---
 
 # Predicting AIV and ACP to Improve Retail Labour Requirements
 
-**A data-science project connecting retail sales, physical workload and labour planning.**
+**Comparing the traditional sales-and-inflation method with predictive modelling, using four years of weekly history and a held-out quarter.**
 
-> **Confidentiality:** This is a public, synthetic reconstruction. All example values, store IDs, sectors and models are fictional. It is not evidence of measured workplace results.
+> **Synthetic demonstration — not original company results.** Every store ID, category, sales amount, average value, inflation rate, SMV and result is fictional. This is an AI-assisted public reconstruction of an analytical research idea. No genuine company data or identifiers are included.
 
-## Why this matters
+## 1. Why predict AIV and ACP?
 
-Labour planning needs a forecast of the **work stores must actually carry out**, not only the monetary value of sales. The same £1,000 of sales can represent very different amounts of handling depending on the products involved. Therefore, a sales forecast alone may not explain whether a team will need to handle 50 cases or 100.
+A sales forecast expresses expected demand in **pounds (£)**, but a store's physical workload is often driven by the **items and cases** its colleagues must handle. That is why value-to-volume conversion drivers exist.
 
-The purpose of this research is to test whether **predicting the value-per-item and value-per-case drivers** used in workload calculations could improve estimated volumes and, through appropriate task standards, the **labour-hours requirement**.
+**Average Item Value (AIV)** is historical sector sales divided by items sold. **Average Case Price (ACP)** is historical sector sales divided by case equivalents. Given forecast sales, these relationships can be reversed to obtain estimates of future item or case volumes.
 
-**Research question:** Can predictions of AIV and ACP, with validated quarterly adjustments, estimate future item and case workload more accurately than assumptions held constant across the year?
-
-## Why AIV and ACP exist in the first place
-
-A sales forecast gives the **expected value of sales (£)**. Many retail tasks, however, are driven by the **physical number of items or cases**, not the pounds taken at the till. AIV and ACP were introduced as practical conversion drivers so a sales-led forecast can also estimate item and case workload.
-
-They are not invented coefficients. They are **ratios observed in historical data**:
-
-| Historical measure | Calculation | Future volume estimate |
+| Historical ratio | Definition | Forecast quantity |
 | --- | --- | --- |
-| **Average Item Value (AIV)** | Historical sales ÷ historical items sold | Forecast sales ÷ predicted AIV = **estimated items** |
-| **Average Case Price (ACP)** | Historical sales ÷ historical case equivalents | Forecast sales ÷ predicted ACP = **estimated cases** |
+| **AIV (£/item)** | Historical sales ÷ actual items | **Forecast sales ÷ forecast AIV = items** |
+| **ACP (£/case)** | Historical sales ÷ actual case equivalents | **Forecast sales ÷ forecast ACP = cases** |
 
-Put simply:
+The arithmetic is defensible: **sales value = quantity × average value per unit**. The uncertainty lies in the *future* sales figure and *future* AIV/ACP assumption. Estimated case equivalents associated with sales are not automatically the same as delivered, stored or replenished cases.
 
-```text
-Historical:  Sales value = Items × Average Item Value
-Forecast:    Expected items = Forecast sales ÷ Forecast AIV
+For this experiment, we first apply the **sector share of division sales**, then derive items or cases, and apply a corresponding **Standard Minute Value (SMV)** to obtain illustrative variable task-hours.
 
-Historical:  Sales value = Cases × Average Case Price
-Forecast:    Expected cases = Forecast sales ÷ Forecast ACP
-```
+![Illustrative flow from forecast sales through item and case volumes to labour task-hours](assets/demand-to-hours.svg)
 
-This is a normal **value–price–quantity relationship**, rather than an arbitrary method. The [IMF explains decomposing transaction value into price and quantity](https://www.elibrary.imf.org/display/book/9781475589870/ch008.xml), and the [Office for National Statistics publishes separate retail sales value and volume measures](https://www.ons.gov.uk/businessindustryandtrade/retailindustry/bulletins/retailsales/october2023). An average selling price can be calculated as [sales revenue divided by units sold](https://stripe.com/resources/more/average-selling-price-asp-in-sales).
+## 2. What is wrong with leaving AIV/ACP static?
 
-### An example of why this can predict volumes
+In the existing-method reconstruction, AIV and ACP are averaged from a relatively flat trading period in the **previous year**, then adjusted **week by week using Finance-style inflation assumptions**. Once the sector mix is fixed, the estimated weekly items and cases change through **forecast sales and inflation-adjusted AIV/ACP**.
 
-Imagine fictional historical sales of **£40,000** corresponded to **8,000 items** or **800 case equivalents**. That establishes a historical AIV of **£5 per item** and ACP of **£50 per case**.
+But real averages can vary with the prices and mix of products purchased in different weeks, promotions and seasonal purchasing patterns. The question is whether those historical weekly patterns can be modelled more accurately than using an annual reference plus inflation alone.
 
-If next quarter's sector sales are expected to be **£45,000**, keeping those averages would imply **9,000 items**, or **900 cases**.
+> **Research question:** Will directly forecasting weekly AIV and ACP improve forecast items, case equivalents and calculated task-hours compared with the static previous-year method?
 
-This is a **reasonable, transparent starting forecast**, not a guarantee. Historically the conversion is an arithmetic identity. When estimating the future, it depends on the **accuracy of the forecast sales and of the predicted AIV/ACP**.
+## 3. Experimental design: Q1 2026
 
-### Why is predicting AIV/ACP an improvement opportunity?
+Both methods receive the **same fictional forecast division sales, the same fixed sector mix and the same task SMVs**. Neither receives the held-out actual Q1 2026 item/case values.
 
-A single **annual** ratio assumes the relationship between sales and quantities stays representative all year. In practice that ratio may change with **product mix, price changes, promotions, discounts or seasonal purchasing patterns**. Predicting the ratio for a future quarter may therefore improve the number of items or cases derived from the same sales forecast.
+<grid columns={2} gap={3}>
+  <grid-item>
+    <box border radius="lg" padding={3} gap={2}>
+      <text weight="medium">A — Static + inflation</text>
 
-This is particularly useful when sales forecasting already exists: rather than replacing it, the project tests a way of converting that established forecast into more accurate **workload drivers**.
+      **2025 flat-period AIV/ACP**
 
-**But it must be tested.** Forecast cases inferred from sales are **case equivalents**, not necessarily the exact physical cases delivered, moved or replenished. Inventory and delivery patterns can make those quantities different. And a separate direct item-volume forecasting model may turn out to be more accurate.
+      Historical reference weeks **18–30**, calculated as total sales divided by total units
 
-### What would justify the method in an assessment?
+      <icon name="arrow-down" color="secondary" />
 
-The method is defensible when historical sales and quantities are **matched on period, sector, store and definitions**; the ratio uses total sales divided by total units (not an unweighted average of ratios); and forecast values are compared with real future volumes.
+      **Weekly Finance-style uplift**
 
-A proper evaluation should ask:
+      Fictional annual assumptions compounded weekly: **2.6%** for remaining 2025 and **2.8%** for 2026
 
-1. Is quarterly predicted **AIV/ACP** more accurate than a static annual assumption?
-2. Does this result in lower error or bias in **forecast items or case equivalents**, once forecast sales and sector mix are included?
-3. Does the improved quantity estimate lead to more realistic **task-hour requirements**, using the correct units and time standard?
+      <icon name="arrow-down" color="secondary"/>
 
-Retail labour-modelling literature identifies **items and cases as standard activity drivers** for variable work; [Logile discusses that connection with engineered labour standards](https://www.logile.com/resources/blog/case-for-superior-retail-staffing-analysis-tools). It supports the approach of connecting volume to time, but does not prove this specific predictive model works.
+      **Items, cases and task-hours**
+    </box>
+  </grid-item>
+  <grid-item>
+    <box border radius="lg" padding={3} gap={2}>
+      <text weight="medium">B — Predictive challenger</text>
+
+      **2022–2025 weekly AIV/ACP**
+
+      Four historical years, with fictional price trends and seasonality
+
+      <icon name="arrow-down" color="secondary"/>
+
+      **Ridge regression forecast**
+
+      Time trend, seasonal calendar features and fictional store/sector identities; **no separate inflation uplift**
+
+      <icon name="arrow-down" color="secondary"/>
+
+      **Items, cases and task-hours**
+    </box>
+  </grid-item>
+</grid>
+
+**Scale of this public simulation:** 6 fictional stores × 4 fictional sectors × 208 historical weeks = **4,992 training observations**. The entire first **13 weeks of 2026**, or **312 observations**, were held out for evaluation.
+
+## 4. Results: what the synthetic data show
+
+### Historical weekly AIV patterns
+
+![Fictional weekly AIV from the first quarter of 2022 through 2025](assets/historical-q1-aiv.svg)
+
+The simulated AIV has recurring week-of-year variation and increasing nominal price levels across years. A constant previous-year flat-period value does not represent all of those effects.
+
+### Forecast AIV for Q1 2026
+
+![Fictional Q1 2026 AIV: simulated actual versus static and predictive forecasts](assets/q1-aiv-forecast.svg)
+
+### Forecast ACP for Q1 2026
+
+![Fictional Q1 2026 ACP: simulated actual versus static and predictive forecasts](assets/q1-acp-forecast.svg)
+
+### How this flows into labour requirements
+
+The model comparison is **not finished at AIV or ACP**. Forecast sector sales are divided by each method's ratio to get item or case forecasts, and these are multiplied by the matching synthetic task SMV.
+
+![Fictional Q1 weekly task-hours from both methods compared with simulated actual hours](assets/q1-weekly-task-hours.svg)
+
+### The key results: accuracy after converting into physical workload
+
+![Comparison of synthetic Q1 2026 WAPE for predicted items, cases and task-hours](assets/downstream-wape.svg)
+
+| Held-out Q1 2026 accuracy | Static + inflation WAPE | Predictive WAPE |
+| --- | ---: | ---: |
+| **AIV** | 21.998% | **12.116%** |
+| **ACP** | 19.416% | **11.546%** |
+| **Items** | 20.834% | **9.193%** |
+| **Case equivalents** | 21.682% | **8.924%** |
+| **Calculated task-hours** | 20.929% | **9.702%** |
+
+**Finding:** task-hour forecast error decreased by **11.227 percentage points**, a **53.6% relative reduction** in this *synthetic scenario*. The direct method also reduced item and case errors. This is an experiment in forecasting methodology, **not evidence of real staffing savings**.
+
+## 5. Interpretation and limitations
+
+The simulated histories were **deliberately constructed with seasonality and inflation-like changes**. Therefore, a calendar-based model has an opportunity to improve on a ratio taken from a static period. Real data could produce a very different result.
+
+The predictive model receives **no separate inflation feature or post-prediction uplift**. Its nominal AIV/ACP forecasts can nevertheless reflect price growth inferred from historical observations. Adding Finance inflation again could **double-count** the effect.
+
+Both methods use the same forecast sales, but actual Q1 sales differ slightly from the shared forecast. This reflects a source of error common to both methods. The synthetic “actual” task-hours are calculated using invented time standards and physical quantities; they are **not real scheduled or paid hours**.
+
+The next genuine validation would need authorised historical item/case volumes, strict forecast-origin timing for inflation assumptions and published indices, multiple out-of-time quarters, and a demonstrated relationship between sales-derived case equivalents and actual task workload.
+
+**Conclusion:** the experiment shows how to test whether smarter AIV/ACP forecasting produces a better labour demand estimate. It does not show that the approach has already succeeded in a production wage model.
 
 ---
 
-## What are AIV and ACP?
+[**Read detailed findings and limitations**](FINDINGS.md) · [**View reproducible Python code and methodology**](README.md) · [**Explore the conversion and inflation logic**](WORKLOAD_LOGIC.md)
 
-| Driver | Definition | Purpose |
-| --- | --- | --- |
-| **AIV: Average Item Value** | Average value of sales per item (£/item) | Convert sector sales into estimated items |
-| **ACP: Average Case Price** | Average value of sales per case (£/case) | Convert sector sales into estimated cases |
-| **Mix** | Sector's share of division sales | Attribute a sales forecast to the appropriate sector |
-| **IPC: Items Per Case** | Number of items per case | Convert item volume to cases where needed |
-| **SMV: Standard Minute Value** | Expected minutes for the applicable activity | Convert the relevant task volume into minutes and hours |
-
-AIV and ACP are **alternative conversion approaches**, not two estimates to add together.
-
-## The business calculation
-
-![Illustrated flow from forecast division sales to estimated task hours](assets/demand-to-hours.svg)
-
-The conceptual process starts with `division forecast sales × sector mix`. The resulting sector sales are divided by **AIV** to derive items, or **ACP** to derive cases. An AIV-based item estimate can be converted to cases using **IPC**, if the task is measured in cases. Then, the relevant volume is multiplied by the matching **SMV** and divided by 60 to derive variable task-hours.
-
-These are **task-level illustrative hours**, not the complete staffing requirement. Fixed hours, other tasks, activity profiles and planning constraints must be considered separately.
-
-## A small example: why quarter-specific assumptions could change the forecast
-
-All values below are invented for explanation.
-
-| Step | Value |
-| --- | ---: |
-| Forecast division sales | £120,000 |
-| Sector mix | 25% |
-| Forecast sector sales | **£30,000** |
-| Static annual ACP | £60 per case |
-| **Cases estimated using annual ACP** | **500** |
-| Quarter-specific ACP (illustrative) | £75 per case |
-| **Cases estimated using quarterly ACP** | **400** |
-| Case-handling SMV | 2.4 minutes per case |
-| **Task hours using annual ACP** | **20 hours** |
-| **Task hours using quarterly ACP** | **16 hours** |
-
-In this fictional example, the static annual assumption overestimates case-handling demand by four task-hours. If the actual quarterly ACP were lower than the annual assumption, the direction of the error would be reversed.
-
-**This is the business reason for predictive modelling:** a better driver forecast could improve the number of items and cases used in workforce planning. But this still needs evidence: lower AIV/ACP error is not automatically lower workload-hours error.
-
-## Data science approach
-
-1. Build a historical panel of **fictional** stores, product sectors, years, AIV, ACP and seasonal observations.
-2. Explore trend and seasonal variation, while separating genuine predictive features from assumed quarterly multipliers.
-3. Compare candidate models with a simple historic-value benchmark using chronologically held-out data.
-4. Evaluate error and **signed bias** in AIV and ACP.
-5. Translate alternative driver assumptions into estimated items, cases and **illustrative task-hours** to show why model quality matters operationally.
-
-**Current status:** a synthetic exploratory dataset and initial modelling code are available. Evaluation charts and model findings still require execution and review. The worked example above is a calculation illustration, **not a reported model improvement**.
-
-## Findings and limitations
-
-This version establishes the **business mechanism and research hypothesis**, not validated results. Before concluding that the approach improves resource planning, it must demonstrate that predicted conversion drivers perform better on future data, that their volume estimates are more accurate, and that task-hour sensitivity is meaningful. Overall staffing and cost savings cannot be inferred from this analysis.
-
-[Read the full technical overview](README.md) · [Calculation assumptions and formulas](WORKLOAD_LOGIC.md) · [Browse the Python implementation on GitHub](https://github.com/Rolando-Villca/Rolando-Villca-DSPP/tree/main/projects/aiv-acp-predictive-modelling)
-
----
-
-*Prepared as an AI-assisted public reconstruction of an earlier analytical investigation, with simulated inputs and no confidential employer records.*
+*The public code and documentation were prepared with AI assistance. This case study is a synthetic reconstruction; it does not publish original retailer data or original project measured outcomes.*
