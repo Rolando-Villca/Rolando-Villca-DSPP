@@ -28,7 +28,7 @@ The initial ratio histories intentionally include year-to-year inflation-like dr
 
 ![Synthetic 2025 weekly AIV and the selected W18–W30 reference window](assets/2025-aiv-reference-window.svg)
 
-The static reference is the **quantity-weighted** AIV/ACP from the **relatively flat trading/sales period in 2025, weeks 18–30**. It is not the unweighted arithmetic average of weekly ratios. Nor is the AIV itself necessarily flat within those weeks. The fictional Category A example produces a reference of approximately **£3.86/item** before Finance-style weekly inflation adjustments. Different selected reference weeks could yield a materially different baseline, and sensitivity to that choice should be examined in real validation.
+The static reference is the **quantity-weighted** AIV/ACP from the **relatively flat trading/sales period in 2025, weeks 18–30**. It is not the unweighted arithmetic average of weekly ratios. Nor is the AIV itself necessarily flat within those weeks. The fictional Category A example produces a reference of approximately **£3.84/item** before Finance-style weekly inflation adjustments. Different selected reference weeks could yield a materially different baseline, and sensitivity to that choice should be examined in real validation.
 
 ## 1. Historical AIV is not necessarily constant within the year
 
